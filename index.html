@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Juan Carlos Perez Hernandez</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: rgba(30, 41, 59, 0.7);
+            --surface-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --placeholder-border: #f59e0b;
+            --code-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: var(--surface-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--surface-border);
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--surface-border);
+            z-index: 100;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-item {
+            margin-bottom: 1rem;
+        }
+
+        .nav-unit {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-unit:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-unit::after {
+            content: '▼';
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.active .nav-unit::after {
+            transform: rotate(-180deg);
+        }
+
+        .nav-metas {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding-left: 1rem;
+        }
+
+        .nav-item.active .nav-metas {
+            max-height: 300px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-cyan);
+            border-left-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 300px;
+            padding: 0 2rem 5rem 2rem;
+            max-width: 1200px;
+        }
+
+        /* Header Gradient */
+        .page-header {
+            padding: 4rem 2rem;
+            margin: 0 -2rem 3rem -2rem;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 0.8) 100%), 
+                        radial-gradient(circle at top left, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            border-bottom: 1px solid var(--surface-border);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .student-info {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .institution-info {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .unit-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--accent-cyan);
+            border-bottom: 2px solid rgba(6, 182, 212, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .meta-container {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+
+        .meta-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .meta-desc {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Code Blocks */
+        .code-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+        
+        .code-header {
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem 0;
+            background: var(--code-bg);
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            display: flex;
+        }
+
+        .line-numbers {
+            padding: 0 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            color: #475569;
+            text-align: right;
+            user-select: none;
+        }
+
+        code {
+            padding: 0 1rem;
+            display: block;
+            color: #e2e8f0;
+            white-space: pre;
+        }
+
+        /* Syntax Highlighting */
+        .token.comment { color: #64748b; font-style: italic; }
+        .token.keyword { color: #c678dd; }
+        .token.string { color: #98c379; }
+        .token.number { color: #d19a66; }
+        .token.function { color: #61afef; }
+        .token.operator { color: #56b6c2; }
+        .token.class { color: #e5c07b; }
+
+        /* Placeholders */
+        .test-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--surface-border);
+        }
+
+        .test-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .placeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .placeholder-box {
+            border: 3px dashed var(--placeholder-border);
+            border-radius: 0.5rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(245, 158, 11, 0.05);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .placeholder-box:hover {
+            transform: scale(1.02);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .placeholder-label {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--placeholder-border);
+            text-decoration: underline;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Reflexion */
+        .reflexion-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 0 1rem;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar glass" id="sidebar">
+        <div class="sidebar-title">Portafolio EDA</div>
+        
+        <div class="nav-item">
+            <div class="nav-unit" onclick="toggleNav(this)">Unidad I</div>
+            <div class="nav-metas">
+                <a href="#meta-1-1" class="nav-link">Meta 1.1 - Arreglos</a>
+                <a href="#meta-1-2" class="nav-link">Meta 1.2 - Pilas y Colas</a>
+            </div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-unit" onclick="toggleNav(this)">Unidad II</div>
+            <div class="nav-metas">
+                <a href="#meta-2-2" class="nav-link">Meta 2.2 - Búsqueda</a>
+            </div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-unit" onclick="toggleNav(this)">Unidad III</div>
+            <div class="nav-metas">
+                <a href="#meta-3-1" class="nav-link">Meta 3.1 - Ordenamiento</a>
+                <a href="#meta-3-2" class="nav-link">Meta 3.2 - Comparación</a>
+            </div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-unit" onclick="toggleNav(this)">Unidad IV</div>
+            <div class="nav-metas">
+                <a href="#meta-4-1" class="nav-link">Meta 4.1 - Grafos</a>
+                <a href="#meta-4-2" class="nav-link">Meta 4.2 - Árbol BST</a>
+                <a href="#meta-4-3" class="nav-link">Meta 4.3 - Huffman</a>
+            </div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-unit" onclick="toggleNav(this)">Unidad V</div>
+            <div class="nav-metas">
+                <a href="#meta-5-1" class="nav-link">Meta 5.1 - Árbol Trie</a>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <a href="#reflexion" class="nav-unit" style="text-decoration: none; color: inherit;">Reflexión Final</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Portafolio de Evidencias<br>Estructuras de Datos y Algoritmos</h1>
+            <div class="student-info">Juan Carlos Perez Hernandez | Matrícula: 2200110</div>
+            <div class="institution-info">Universidad Autónoma de Baja California — FCITEC</div>
+            <div class="institution-info">Docente: Abigail Moreno Cabrera</div>
+        </header>
+
+        <!-- UNIDAD I -->
+        <section id="unidad-1">
+            <h2 class="unit-title">UNIDAD I — Introducción a las Estructuras de Datos</h2>
+            
+            <!-- Meta 1.1 -->
+            <div class="meta-container glass" id="meta-1-1">
+                <h3 class="meta-title">Meta 1.1 — Arreglos y Tipos de Dato</h3>
+                <p class="meta-desc">Programa en C que calcula el promedio de 5 calificaciones de punto flotante utilizando arreglos estáticos. Incluye prueba de rendimiento de operaciones aritméticas con distintos tipos de dato (int, float, double) para medir el costo computacional de cada uno.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>calificaciones.c</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-c">
+// Programa que calcula el promedio de 5 calificaciones de punto flotante
+
+#include &lt;stdio.h&gt;
+
+int main() {
+
+    // Arreglo que almacena 5 calificaciones de tipo float
+    float calificaciones[5];
+    float suma = 0;
+    float promedio;
+
+    // Captura de calificaciones
+    // cada numero introducido por el usuario se guarda en un espacio del arreglo calificaciones
+    // tambien se va sumando el total de calificaciones para calcular el promedio
+    for (int i = 0; i < 5; i++) {
+        printf("Calificacion de materia %d: ", i + 1);
+        scanf("%f", &calificaciones[i]);
+        suma += calificaciones[i];
+    }
+
+    // Calculo del promedio
+    promedio = suma / 5;
+
+    // Resultados
+    printf("\nCalificaciones ingresadas:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("  Materia %d: %.2f\n", i + 1, calificaciones[i]);
+    }
+
+    printf("\nPromedio: %.2f\n", promedio);
+
+    if (promedio >= 60) {
+        printf("Estado: APROBADO\n");
+    } else {
+        printf("Estado: REPROBADO\n");
+    }
+
+    return 0;
+}
+</code></pre>
+                </div>
+
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>prueba_ejecucion.c</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+// Constante que define el limite de iteraciones
+#define ITERACIONES 100000000
+
+int main(){
+    clock_t inicio, fin;
+    double tiempo;
+
+    // Variables para las operaciones
+    int    a_int    = 1000, b_int    = 7;
+    float  a_float  = 1000.5f, b_float  = 7.3f;
+    double a_double = 1000.5,  b_double = 7.3;
+
+    // Variables que almacenan el resultado de las operaciones
+    // volatile evita que el compilador ignore o elimine estas variables
+    volatile int    r_int;
+    volatile float  r_float;
+    volatile double r_double;
+
+    // tipo de dato | operacion aritmetica | tiempo en ms
+    printf("Tipo | tOperacion | tTiempo (ms)\n");
+    printf("____________________________________\n");
+
+ // == INT ==
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_int = a_int + b_int;
+    fin = clock();
+    printf("int\\t\\tsuma\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_int = a_int - b_int;
+    fin = clock();
+    printf("int\\t\\tresta\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_int = a_int * b_int;
+    fin = clock();
+    printf("int\\t\\tmultiplicacion\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_int = a_int / b_int;
+    fin = clock();
+    printf("int\\t\\tdivision\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    printf("\\n");
+
+    // == FLOAT ==
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_float = a_float + b_float;
+    fin = clock();
+    printf("float\\t\\tsuma\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_float = a_float - b_float;
+    fin = clock();
+    printf("float\\t\\tresta\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_float = a_float * b_float;
+    fin = clock();
+    printf("float\\t\\tmultiplicacion\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_float = a_float / b_float;
+    fin = clock();
+    printf("float\\t\\tdivision\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    printf("\\n");
+
+    // == DOUBLE ==
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_double = a_double + b_double;
+    fin = clock();
+    printf("double\\t\\tsuma\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_double = a_double - b_double;
+    fin = clock();
+    printf("double\\t\\tresta\\t\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_double = a_double * b_double;
+    fin = clock();
+    printf("double\\t\\tmultiplicacion\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    inicio = clock();
+    for (int i = 0; i < ITERACIONES; i++) r_double = a_double / b_double;
+    fin = clock();
+    printf("double\\t\\tdivision\\t%.4f ms\\n", (double)(fin - inicio) / CLOCKS_PER_SEC * 1000);
+
+    return 0;
+}
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta 1.2 -->
+            <div class="meta-container glass" id="meta-1-2">
+                <h3 class="meta-title">Meta 1.2 — Pilas y Colas</h3>
+                <p class="meta-desc">Programa en Python que implementa las operaciones fundamentales de las estructuras de datos Pila (LIFO) y Cola (FIFO) sobre un arreglo dinámico compartido, con un menú interactivo para agregar y eliminar datos.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>estructuras.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+#Arreglo donde se guardan los datos
+datos = []
+
+# PILA
+
+# Agrega al final
+def push():
+    valor = input("Ingresa un dato para la pila: ")
+    datos.append(valor)
+
+
+# Elimina el ultimo
+def pop():
+    if len(datos) == 0:
+        print("No hay datos")
+        return
+
+    # .pop() elimina por defecto el ultimo dato si no se pone un indice
+    eliminado = datos.pop()
+    print("Dato eliminado:", eliminado)
+
+
+# COLA
+
+# Agrega al final
+def enqueue():
+    valor = input("Ingresa un dato para la cola: ")
+    datos.append(valor)
+
+
+# Elimina el primero
+def dequeue():
+    if len(datos) == 0:
+        print("No hay datos")
+        return
+
+    # pop elimina el dato en el indice 0 del arreglo
+    eliminado = datos.pop(0)
+    print("Dato eliminado:", eliminado)
+
+
+# Muestra la lista
+def ver_arreglo():
+    if len(datos) == 0:
+        print("El arreglo esta vacio")
+        return
+
+    print("Arreglo:", datos)
+
+
+# Menu que itera hasta que el usuario elige la opcion 6. salir
+# En el arreglo datos se pueden agregar y eliminar sus registros en pila y cola.
+while True:
+
+    print("\n===== MENU =====")
+    print("1. Agregar dato (pila)")
+    print("2. Eliminar dato (pila)")
+    print("3. Agregar dato (cola)")
+    print("4. Eliminar dato (cola)")
+    print("5. Ver arreglo")
+    print("6. Salir")
+
+    opcion = input("Selecciona una opcion: ")
+
+    if opcion == "1":
+        push()
+
+    elif opcion == "2":
+        pop()
+
+    elif opcion == "3":
+        enqueue()
+
+    elif opcion == "4":
+        dequeue()
+
+    elif opcion == "5":
+        ver_arreglo()
+
+    elif opcion == "6":
+        print("Programa terminado")
+        break
+
+    else:
+        print("Opcion invalida")
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD II -->
+        <section id="unidad-2">
+            <h2 class="unit-title">UNIDAD II — Recursividad y Búsqueda Lineal</h2>
+            
+            <!-- Meta 2.2 -->
+            <div class="meta-container glass" id="meta-2-2">
+                <h3 class="meta-title">Meta 2.2 — Búsqueda Secuencial y Centinela</h3>
+                <p class="meta-desc">Programa en Python que implementa los algoritmos de búsqueda secuencial lineal y búsqueda con centinela sobre un arreglo desordenado, retornando el índice del elemento objetivo. Incluye código comentado de factorial iterativo y recursivo como referencia de recursividad.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>factorial.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+# def factorial_iterativo(number):
+#     product = 1
+#     for i in range(1, number + 1):
+#         product = product * i
+#     return product
+# print("Factorial iterativo: ")
+# print(factorial_iterativo(10))
+
+
+# def factorial_recursivo(number):
+#     if number == 1:
+#         # Caso base
+#         return 1
+#     else:
+#         # Caso recursivo
+#         return number * factorial_recursivo(number - 1)
+# print("\nFactorial recursivo: ")
+# print(factorial_recursivo(10))
+
+arreglo = [14, 23, 45, 8, 19]
+
+def busqueda_secuencial(lista, objetivo):
+    for i in range(len(lista)):
+        if lista[i] == objetivo:
+            return i
+    return -1
+print("\nBusqueda secuencial linear")
+print(busqueda_secuencial(arreglo, 8)) # = 3
+
+
+def busqueda_centinela(lista, objetivo):
+    n = len(lista)
+
+    lista.append(objetivo) # agregar centinela
+
+    i = 0
+    while lista[i] != objetivo:
+        i += 1
+
+    lista.pop() # eliminar centinela
+
+    if i < n:
+        return i
+    else:
+        return -1
+print("\nBusqueda centinela: ")
+print(busqueda_centinela(arreglo, 8)) # = 3
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD III -->
+        <section id="unidad-3">
+            <h2 class="unit-title">UNIDAD III — Algoritmos de Ordenamiento y Búsqueda</h2>
+            
+            <!-- Meta 3.1 -->
+            <div class="meta-container glass" id="meta-3-1">
+                <h3 class="meta-title">Meta 3.1 — Algoritmos de Ordenamiento</h3>
+                <p class="meta-desc">Implementación de cuatro algoritmos de ordenamiento clásicos: Bubble Sort, Selection Sort, Insertion Sort y Merge Sort, aplicados sobre un arreglo de 100 elementos numéricos desordenados. Se documentan los principios de operación, las comparaciones e intercambios de cada algoritmo.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>algoritmos.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+my_array = [
+    842, 12, 934, 10, 563, 712, 45, 902, 115, 348, 
+    276, 501, 88, 642, 19, 777, 314, 599, 23, 856, 
+    411, 93, 705, 150, 689, 34, 981, 204, 532, 76, 
+    810, 423, 67, 955, 189, 470, 9, 833, 258, 614, 
+    55, 920, 137, 749, 302, 581, 81, 874, 396, 627, 
+    18, 968, 221, 485, 60, 891, 164, 730, 375, 518, 
+    47, 915, 289, 650, 103, 804, 336, 547, 95, 862, 
+    449, 72, 943, 210, 698, 29, 785, 361, 574, 126, 
+    827, 408, 51, 976, 245, 663, 172, 849, 380, 509, 
+    86, 908, 319, 602, 145, 757, 434, 59, 888, 271
+]
+
+# Bubble Sort ----------------------------------------------------
+# Compara pares adyacentes y los intercambia si estan en orden incorrecto
+n = len(my_array)
+for i in range(n - 1):                      # pasadas necesarias
+    for j in range(n - i - 1):              # evita comparar los ya ordenados al final
+        if my_array[j] > my_array[j + 1]:  # elemento izquierdo es mayor
+            my_array[j], my_array[j + 1] = my_array[j + 1], my_array[j]  # intercambio
+
+print("Arreglo ordenado con Bubble Sort:", my_array)
+
+
+# Selection Sort ----------------------------------------------------
+# En cada pasada busca el minimo del subarreglo sin ordenar
+# y lo mueve a la posicion correcta al inicio.
+n = len(my_array)
+for i in range(n - 1):          # posicion donde colocaremos el minimo
+    min_index = i                # asumimos que el minimo esta en i
+    for j in range(i + 1, n):   # buscar el minimo real en el resto
+        if my_array[j] < my_array[min_index]:
+            min_index = j        # actualizar indice del minimo encontrado
+    min_value = my_array.pop(min_index)  # extraer el minimo
+    my_array.insert(i, min_value)        # insertarlo en su posicion
+
+print("Arreglo ordenado con Selection Sort:", my_array)
+
+
+# Insertion Sort ----------------------------------------------------
+# Toma cada elemento y lo inserta en el lugar correcto
+# dentro de la parte izquierda que ya esta ordenada.
+n = len(my_array)
+for i in range(1, n):                       # recorre desde el segundo elemento
+    insert_index = i
+    current_value = my_array.pop(i)         # extrae el elemento a insertar
+    for j in range(i - 1, -1, -1):         # recorre hacia atras la parte ordenada
+        if my_array[j] > current_value:     # si el vecino es mayor, retrocede
+            insert_index = j
+    my_array.insert(insert_index, current_value)  # inserta en la posicion correcta
+
+print("Arreglo ordenado con Insertion Sort:", my_array)
+
+
+# Merge Sort ----------------------------------------------------
+# Divide y Venceras
+#  divide el arreglo a la mitad de forma
+# recursiva hasta tener subarreglos de 1 elemento, luego las
+# fusiona en orden.
+def mergeSort(arr):
+    if len(arr) <= 1:       # caso base: un elemento ya esta ordenado
+        return arr
+
+    mid = len(arr) // 2     # punto de division
+    leftHalf  = arr[:mid]   # mitad izquierda
+    rightHalf = arr[mid:]   # mitad derecha
+
+    sortedLeft  = mergeSort(leftHalf)   # ordenar mitad izquierda (recursivo)
+    sortedRight = mergeSort(rightHalf)  # ordenar mitad derecha (recursivo)
+
+    return merge(sortedLeft, sortedRight)  # fusionar ambas mitades
+
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    # Comparar elemento a elemento de cada mitad e insertar el menor
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])   # agregar elementos restantes de la izquierda
+    result.extend(right[j:])  # agregar elementos restantes de la derecha
+
+    return result
+
+
+sortedArr = mergeSort(my_array)
+print("Ordenado con Merge Sort:", sortedArr)
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta 3.2 -->
+            <div class="meta-container glass" id="meta-3-2">
+                <h3 class="meta-title">Meta 3.2 — Comparación de Algoritmos de Búsqueda</h3>
+                <p class="meta-desc">Programa que implementa y compara tres algoritmos de búsqueda (Secuencial, Binaria e Interpolada) midiendo su rendimiento en tiempo y número de operaciones sobre conjuntos de 100,000 datos ordenados y aleatorios, con 10,000 repeticiones por prueba para obtener mediciones estables.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>algoritmos_busqueda_comparacion.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+import random
+import time
+
+# ──────────────────────────────────────────────
+#  DATOS
+# ──────────────────────────────────────────────
+datos_ordenados   = list(range(1, 100001))          # [1, 2, ..., 100000]
+datos_aleatorios  = random.sample(range(1, 100001), 100000)
+
+# Veces que se va a repetir la búsqueda (por algoritmo) para estabilizar la medición
+REPETICIONES = 10000
+
+# ──────────────────────────────────────────────
+#  ALGORITMOS  (con contador de operaciones)
+# ──────────────────────────────────────────────
+
+def linearSearch(arr, x):
+    ops = 0
+    for i in range(len(arr)):
+        ops += 1
+        if arr[i] == x:
+            return i, ops
+    return -1, ops
+
+
+def binarySearch(arr, x):
+    ops  = 0
+    low  = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        ops += 1
+        mid  = low + (high - low) // 2
+
+        if arr[mid] == x:
+            return mid, ops
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1, ops
+
+
+def interpolationSearch(arr, x):
+    ops = 0
+    lo  = 0
+    hi  = len(arr) - 1
+
+    while lo <= hi and x >= arr[lo] and x <= arr[hi]:
+        ops += 1
+
+        if arr[hi] == arr[lo]:          # Evitar división entre cero
+            if arr[lo] == x:
+                return lo, ops
+            break
+
+        pos = lo + ((x - arr[lo]) * (hi - lo)) // (arr[hi] - arr[lo])
+
+        if arr[pos] == x:
+            return pos, ops
+        elif arr[pos] < x:
+            lo = pos + 1
+        else:
+            hi = pos - 1
+
+    return -1, ops
+
+# ──────────────────────────────────────────────
+#  FUNCIÓN DE MEDICIÓN CORREGIDA
+# ──────────────────────────────────────────────
+
+def medir(funcion, arr, objetivo):
+    idx, ops = -1, 0
+    
+    inicio = time.perf_counter()
+    for _ in range(REPETICIONES):
+        idx, ops = funcion(arr, objetivo)
+    fin = time.perf_counter()
+    
+    tiempo_promedio = (fin - inicio) / REPETICIONES
+    return idx, ops, tiempo_promedio
+
+# ──────────────────────────────────────────────
+#  FUNCIÓN DE PRUEBA
+# ──────────────────────────────────────────────
+
+def ejecutar_prueba(nombre_algoritmo, funcion, objetivo):
+    print(f"\n{'─'*54}")
+    print(f"  Algoritmo : {nombre_algoritmo}  ({REPETICIONES} repeticiones)")
+    print(f"  Buscando  : {objetivo}")
+    print(f"{'─'*54}")
+
+    idx, ops, t_prom = medir(funcion, datos_ordenados, objetivo)
+    resultado = f"índice {idx}" if idx != -1 else "no encontrado"
+    print(f"  [Ordenados]   resultado={resultado:20s}  "
+          f"ops={ops:6d}  t_prom={t_prom:.8f} s")
+
+    if nombre_algoritmo == "Secuencial":
+        arr_para_buscar = datos_aleatorios
+        t_sort = 0.0
+    else:
+        t0 = time.perf_counter()
+        arr_para_buscar = sorted(datos_aleatorios)
+        t_sort = time.perf_counter() - t0
+
+    idx, ops, t_prom = medir(funcion, arr_para_buscar, objetivo)
+    resultado = f"índice {idx}" if idx != -1 else "no encontrado"
+    extra = f"  (+ {t_sort:.6f} s de ordenamiento)" if t_sort > 0 else ""
+    print(f"  [Aleatorios]  resultado={resultado:20s}  "
+          f"ops={ops:6d}  t_prom={t_prom:.8f} s{extra}")
+
+# ──────────────────────────────────────────────
+#  MENÚ
+# ──────────────────────────────────────────────
+
+def mostrar_menu():
+    print("\n" + "═"*50)
+    print("   COMPARACIÓN DE ALGORITMOS DE BÚSQUEDA")
+    print("═"*50)
+    print("  1. Búsqueda Secuencial  — O(n)")
+    print("  2. Búsqueda Binaria     — O(log n)")
+    print("  3. Búsqueda Interpolada — O(log log n)")
+    print("  4. Comparar los tres juntos")
+    print("  0. Salir")
+    print("─"*50)
+
+def main():
+    while True:
+        mostrar_menu()
+        opcion = input("  Elige una opción: ").strip()
+
+        if opcion == "0":
+            print("\n  Hasta luego.\n")
+            break
+
+        if opcion not in ("1", "2", "3", "4"):
+            print("  Opción no válida, intenta de nuevo.")
+            continue
+
+        objetivo = random.randint(1, 100000)
+        print(f"\n  Número generado aleatoriamente: {objetivo}")
+
+        if opcion == "1":
+            ejecutar_prueba("Secuencial",   linearSearch,        objetivo)
+        elif opcion == "2":
+            ejecutar_prueba("Binaria",      binarySearch,        objetivo)
+        elif opcion == "3":
+            ejecutar_prueba("Interpolada",  interpolationSearch, objetivo)
+        elif opcion == "4":
+            ejecutar_prueba("Secuencial",   linearSearch,        objetivo)
+            ejecutar_prueba("Binaria",      binarySearch,        objetivo)
+            ejecutar_prueba("Interpolada",  interpolationSearch, objetivo)
+
+        input("\n  Presiona Enter para continuar...")
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD IV -->
+        <section id="unidad-4">
+            <h2 class="unit-title">UNIDAD IV — Estructuras No Lineales y Compresión</h2>
+            
+            <!-- Meta 4.1 -->
+            <div class="meta-container glass" id="meta-4-1">
+                <h3 class="meta-title">Meta 4.1 — Grafos y Ordenamiento Topológico</h3>
+                <p class="meta-desc">Sistema de gestión curricular que modela las dependencias entre materias universitarias mediante un Grafo Dirigido, implementando un algoritmo de Ordenamiento Topológico con DFS (Depth-First Search) para determinar el orden válido de cursado, incluyendo detección de dependencias circulares.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>gestion_materias.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+class Materia:
+    """Representa una materia dentro del plan de estudios."""
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.prerrequisitos_de = []  # materias que dependen de esta
+        self.estado = 0  # 0: No visitado, 1: Visitando, 2: Procesado
+
+
+class GrafoCurricular:
+    """Grafo dirigido que modela las dependencias entre materias (prerrequisitos)."""
+
+    def __init__(self):
+        self.materias = {}  # nombre -> objeto Materia
+
+    def agregar_materia(self, nombre):
+        if nombre not in self.materias:
+            self.materias[nombre] = Materia(nombre)
+
+    def agregar_prerrequisito(self, materia_base, materia_dependiente):
+        # Indica que 'materia_dependiente' requiere haber tomado 'materia_base'.
+        # Esto crea una arista dirigida: materia_base -> materia_dependiente
+        self.agregar_materia(materia_base)
+        self.agregar_materia(materia_dependiente)
+        self.materias[materia_base].prerrequisitos_de.append(materia_dependiente)
+
+    def _dfs_visita(self, nombre_nodo, pila_resultado):
+        nodo = self.materias[nombre_nodo]
+        nodo.estado = 1  # Marcar como visitado
+
+        for vecino in nodo.prerrequisitos_de:
+            vecino_nodo = self.materias[vecino]
+            
+            # Deteccion de ciclos
+            if vecino_nodo.estado == 1:
+                raise ValueError(f"Error: Dependencia circular de materia: '{vecino}'. "
+                                 f"El plan de estudios no puede resolverse.")
+            
+            elif vecino_nodo.estado == 0:
+                self._dfs_visita(vecino, pila_resultado)
+
+        nodo.estado = 2  # Marcamor como Procesado, sale de la recursion
+        pila_resultado.append(nombre_nodo)
+
+    def ordenamiento_topologico(self):
+        # Regresa el orden en que se pueden cursar las materias.
+        # Reiniciar estados por si se llama mas de una vez
+        for materia in self.materias.values():
+            materia.estado = 0
+
+        pila_resultado = []
+
+        for nombre_materia in self.materias:
+            if self.materias[nombre_materia].estado == 0:
+                self._dfs_visita(nombre_materia, pila_resultado)
+
+        pila_resultado.reverse()
+        return pila_resultado
+
+
+# ----- Ejemplo de uso -----
+if __name__ == "__main__":
+    grafo = GrafoCurricular()
+
+    # Grafo 3: DESARROLLO WEB
+    grafo = GrafoCurricular()
+
+    # Rama Frontend
+    grafo.agregar_prerrequisito("Diseño UI/UX", "Introduccion a HTML/CSS")
+    grafo.agregar_prerrequisito("Logica de Programacion", "Programacion Frontend (JS)")
+    grafo.agregar_prerrequisito("Introduccion a HTML/CSS", "Programacion Frontend (JS)")
+    grafo.agregar_prerrequisito("Programacion Frontend (JS)", "Frameworks Frontend (React)")
+
+    # Rama Backend
+    grafo.agregar_prerrequisito("Logica de Programacion", "Programacion Backend (Node)")
+    grafo.agregar_prerrequisito("Programacion Backend (Node)", "Bases de Datos Relacionales")
+    grafo.agregar_prerrequisito("Programacion Backend (Node)", "APIs y Microservicios")
+    grafo.agregar_prerrequisito("Bases de Datos Relacionales", "APIs y Microservicios")
+
+    # Convergencia Fullstack y Despliegue
+    grafo.agregar_prerrequisito("APIs y Microservicios", "Cloud Computing y Despliegue")
+    grafo.agregar_prerrequisito("Frameworks Frontend (React)", "Desarrollo Fullstack Integrado")
+    grafo.agregar_prerrequisito("APIs y Microservicios", "Desarrollo Fullstack Integrado")
+
+    try:
+        orden = grafo.ordenamiento_topologico()
+        print("--- ORDEN SUGERIDO PARA CURSAR LAS MATERIAS ---")
+        for i, materia in enumerate(orden, start=1):
+            print(f"{i}. {materia}")
+            
+    except ValueError as e:
+        print("No se pudo generar la ruta academica:")
+        print(e)
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta 4.2 -->
+            <div class="meta-container glass" id="meta-4-2">
+                <h3 class="meta-title">Meta 4.2 — Árbol Binario de Búsqueda</h3>
+                <p class="meta-desc">Sistema de gestión de citas médicas implementado con un Árbol Binario de Búsqueda (BST), donde cada nodo representa una cita con hora, paciente y motivo. El árbol ordena las citas cronológicamente y detecta conflictos de horario cuando se intenta agendar dos citas a la misma hora.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>algoritmo_arbol.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+# Cita es Nodo del Arbol Binario de Busqueda
+class Cita:
+    def __init__(self, hora, paciente, motivo):
+        self.hora = hora            # formato "00:00" (24h)
+        self.paciente = paciente    # nombre del paciente
+        self.motivo = motivo        # motivo de la consulta
+        self.left = None            # cita anterior en el tiempo
+        self.right = None           # cita posterior en el tiempo
+
+# Funcion para insertar una nueva cita en el arbol de la agenda
+def insertar_cita(root, nueva_cita):
+    # Si la agenda esta vacia, la nueva cita se convierte en la raiz
+    if root is None:
+        return nueva_cita
+
+    # Comparar la hora de la nueva cita con la cita actual (root)
+    if nueva_cita.hora < root.hora:
+        # Ir al subarbol izquierdo (citas mas temprano)
+        root.left = insertar_cita(root.left, nueva_cita)
+    elif nueva_cita.hora > root.hora:
+        # Ir al subarbol derecho (citas mas tarde)
+        root.right = insertar_cita(root.right, nueva_cita)
+    else:
+        # Si la hora es la misma, se detecta un conflicto de horario
+        print(f"CONFLICTO: Ya existe una cita agendada a las {nueva_cita.hora} para {root.paciente}.")
+        
+    return root
+
+# Recorrido Inorder para mostrar la agenda de forma cronologica
+def mostrar_agenda(root):
+    if root:
+        # Visitar citas mas temprano (izquierda)
+        mostrar_agenda(root.left)
+        
+        # Mostrar la cita actual
+        print(f"| {root.hora:<7} | {root.paciente:<20} | {root.motivo:<25} |")
+        
+        # Visitar citas mas tarde (derecha)
+        mostrar_agenda(root.right)
+
+
+if __name__ == "__main__":
+    print("=== SISTEMA DE GESTION DE CITAS (ARBOL BINARIO DE BUSQUEDA) ===\n")
+    
+    # Creamos la agenda vacia
+    agenda = None
+    
+    # Lista de citas a ingresar (desordenado)
+    citas_a_ingresar = [
+        Cita("10:00", "Carlos Gomez", "Revision dental"),
+        Cita("08:30", "Ana Martinez", "Consulta general"),
+        Cita("14:00", "Sofia Ruiz", "Limpieza dental"),
+        Cita("09:00", "Luis Hernandez", "Ortodoncia"),
+        Cita("11:30", "Maria Lopez", "Extraccion"),
+        Cita("10:00", "Pedro Diaz", "Consulta de seguimiento") # Conflicto
+    ]
+    
+    # Agendar las citas
+    print("Agendando citas...")
+    for cita in citas_a_ingresar:
+        agenda = insertar_cita(agenda, cita)
+        
+    print("                     AGENDA DEL DIA                          ")
+    print("-------------------------------------------------------------")
+    print(f"| {'Hora':<7} | {'Paciente':<20} | {'Motivo':<25} |")
+    
+    # Mostramos la agenda ordenada usando recorrido Inorder
+    mostrar_agenda(agenda)
+    
+    print("-------------------------------------------------------------")
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta 4.3 -->
+            <div class="meta-container glass" id="meta-4-3">
+                <h3 class="meta-title">Meta 4.3 — Compresión de Huffman</h3>
+                <p class="meta-desc">Implementación completa del algoritmo de compresión de Huffman para archivos binarios. Incluye construcción del árbol de Huffman mediante un Min-Heap, generación de códigos de longitud variable, serialización con encabezado JSON, y un sistema de pruebas de rendimiento automatizadas que evalúa la compresión en cuatro escenarios distintos (texto redundante, texto literario, datos aleatorios y escalabilidad a 1 MB), validando la integridad mediante SHA-256.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>huffman.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+import heapq
+import json
+from collections import Counter
+
+class HuffmanNode:
+    """Clase que representa un nodo en el árbol de Huffman."""
+    def __init__(self, byte_val, freq, left=None, right=None):
+        self.byte_val = byte_val
+        self.freq = freq
+        self.left = left
+        self.right = right
+
+    def __lt__(self, other):
+        """Permite que heapq ordene los nodos por frecuencia de menor a mayor."""
+        return self.freq < other.freq
+
+class HuffmanCompressor:
+    """Clase para comprimir y descomprimir archivos usando el algoritmo de Huffman."""
+    
+    @staticmethod
+    def _build_tree(freqs):
+        """Construye el árbol de Huffman y devuelve el nodo raíz."""
+        heap = [HuffmanNode(byte_val, freq) for byte_val, freq in freqs.items()]
+        heapq.heapify(heap)
+
+        if len(heap) == 1:
+            node = heapq.heappop(heap)
+            parent = HuffmanNode(None, node.freq, left=node)
+            heapq.heappush(heap, parent)
+
+        while len(heap) > 1:
+            node1 = heapq.heappop(heap)
+            node2 = heapq.heappop(heap)
+            merged = HuffmanNode(None, node1.freq + node2.freq, left=node1, right=node2)
+            heapq.heappush(heap, merged)
+
+        return heap[0] if heap else None
+
+    @staticmethod
+    def _generate_codes(root):
+        """Genera el diccionario de códigos de Huffman (byte -> secuencia de bits)."""
+        codes = {}
+        
+        def traverse(node, current_code):
+            if node is None:
+                return
+            if node.byte_val is not None:
+                codes[node.byte_val] = current_code
+                return
+            traverse(node.left, current_code + '0')
+            traverse(node.right, current_code + '1')
+
+        traverse(root, "")
+        return codes
+
+    def compress(self, input_path, output_path):
+        """Comprime un archivo de entrada y guarda el resultado en el archivo de salida."""
+        with open(input_path, 'rb') as f:
+            data = f.read()
+
+        if not data:
+            with open(output_path, 'wb') as f_out:
+                f_out.write((0).to_bytes(4, 'big'))
+                f_out.write((0).to_bytes(1, 'big'))
+            return
+
+        freqs = dict(Counter(data))
+        root = self._build_tree(freqs)
+        codes = self._generate_codes(root)
+        bit_string = "".join(codes[byte] for byte in data)
+        padding = (8 - len(bit_string) % 8) % 8
+        bit_string += "0" * padding
+
+        byte_arr = bytearray()
+        for i in range(0, len(bit_string), 8):
+            byte_arr.append(int(bit_string[i:i+8], 2))
+
+        json_freqs = json.dumps({str(k): v for k, v in freqs.items()}).encode('utf-8')
+        header_len = len(json_freqs)
+
+        with open(output_path, 'wb') as f_out:
+            f_out.write(header_len.to_bytes(4, 'big'))
+            f_out.write(json_freqs)
+            f_out.write(padding.to_bytes(1, 'big'))
+            f_out.write(byte_arr)
+
+    def decompress(self, input_path, output_path):
+        """Descomprime un archivo comprimido de Huffman y recupera el archivo original."""
+        with open(input_path, 'rb') as f:
+            header_len_bytes = f.read(4)
+            if not header_len_bytes:
+                with open(output_path, 'wb') as f_out:
+                    f_out.write(b"")
+                return
+            
+            header_len = int.from_bytes(header_len_bytes, 'big')
+            if header_len == 0:
+                with open(output_path, 'wb') as f_out:
+                    f_out.write(b"")
+                return
+
+            json_freqs = json.loads(f.read(header_len).decode('utf-8'))
+            freqs = {int(k): v for k, v in json_freqs.items()}
+            padding = int.from_bytes(f.read(1), 'big')
+            compressed_data = f.read()
+
+        bit_string = "".join(f"{b:08b}" for b in compressed_data)
+        
+        if padding > 0:
+            bit_string = bit_string[:-padding]
+
+        root = self._build_tree(freqs)
+        decoded_bytes = bytearray()
+        current_node = root
+        for bit in bit_string:
+            if bit == '0':
+                current_node = current_node.left
+            else:
+                current_node = current_node.right
+
+            if current_node.left is None and current_node.right is None:
+                decoded_bytes.append(current_node.byte_val)
+                current_node = root
+
+        with open(output_path, 'wb') as f_out:
+            f_out.write(decoded_bytes)
+
+if __name__ == "__main__":
+    import sys
+    import os
+    
+    def mostrar_ayuda():
+        print("\nUso del Compresor de Huffman:")
+        print("  Modo Interactivo (Ejecutar directamente):")
+        print("    python huffman.py")
+        print("\n  Modo Línea de Comandos:")
+        print("    python huffman.py compress <archivo_origen> <archivo_destino>")
+        print("    python huffman.py decompress <archivo_origen> <archivo_destino>")
+    
+    compressor = HuffmanCompressor()
+    
+    if len(sys.argv) > 1:
+        if len(sys.argv) != 4:
+            mostrar_ayuda()
+            sys.exit(1)
+            
+        action = sys.argv[1].lower()
+        src = sys.argv[2]
+        dest = sys.argv[3]
+        
+        try:
+            if action == "compress":
+                print(f"Comprimiendo '{src}' en '{dest}'...")
+                compressor.compress(src, dest)
+                print("¡Compresión completada con éxito!")
+            elif action == "decompress":
+                print(f"Descomprimiendo '{src}' en '{dest}'...")
+                compressor.decompress(src, dest)
+                print("¡Descompresión completada con éxito!")
+            else:
+                print(f"Acción desconocida: {action}")
+                mostrar_ayuda()
+        except Exception as e:
+            print(f"Ocurrió un error: {e}")
+            
+    else:
+        while True:
+            print("\n" + "="*40)
+            print("     COMPRESOR / DESCOMPRESOR HUFFMAN   ")
+            print("="*40)
+            print("1. Comprimir un archivo")
+            print("2. Descomprimir un archivo")
+            print("3. Ejecutar pruebas de rendimiento")
+            print("4. Salir")
+            print("-"*40)
+            
+            opcion = input("Selecciona una opción (1-4): ").strip()
+            
+            if opcion == "1":
+                src = input("Ingresa la ruta del archivo a comprimir: ").strip()
+                if not os.path.exists(src):
+                    print("El archivo origen no existe.")
+                    continue
+                dest = input("Ingresa la ruta para guardar el archivo comprimido: ").strip()
+                try:
+                    compressor.compress(src, dest)
+                    print(f"¡Éxito! Archivo comprimido guardado en: {dest}")
+                    print(f"Tamaño original: {os.path.getsize(src):,} bytes")
+                    print(f"Tamaño comprimido: {os.path.getsize(dest):,} bytes")
+                except Exception as e:
+                    print(f"Error al comprimir: {e}")
+                    
+            elif opcion == "2":
+                src = input("Ingresa la ruta del archivo comprimido (.huff): ").strip()
+                if not os.path.exists(src):
+                    print("El archivo comprimido no existe.")
+                    continue
+                dest = input("Ingresa la ruta para restaurar el archivo original: ").strip()
+                try:
+                    compressor.decompress(src, dest)
+                    print(f"¡Éxito! Archivo restaurado en: {dest}")
+                except Exception as e:
+                    print(f"Error al descomprimir: {e}")
+                    
+            elif opcion == "3":
+                print("Ejecutando pruebas de rendimiento...")
+                try:
+                    from tests_huffman import run_tests
+                    run_tests()
+                except Exception as e:
+                    print(f"Error al ejecutar pruebas: {e}")
+                    
+            elif opcion == "4":
+                print("Saliendo del programa. ¡Hasta luego!")
+                break
+            else:
+                print("Opción no válida. Intenta de nuevo.")
+</code></pre>
+                </div>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>tests_huffman.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+import os
+import time
+import hashlib
+from huffman import HuffmanCompressor
+
+def calculate_sha256(filepath):
+    """Calcula el hash SHA-256 de un archivo para verificar integridad."""
+    sha256 = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        while chunk := f.read(8192):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
+def run_tests():
+    compressor = HuffmanCompressor()
+    
+    temp_dir = "temp_tests"
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    test_cases = {
+        "Texto Redundante (Alta redundancia)": {
+            "content": b"A" * 50000 + b"B" * 25000 + b"C" * 12500 + b"D" * 12500,
+            "filename": "redundante.txt"
+        },
+        "Texto Literario (Entropía Media)": {
+            "content": (
+                "En un lugar de la Mancha, de cuyo nombre no quiero acordarme..."
+            ).encode('utf-8') * 50,
+            "filename": "quijote.txt"
+        },
+        "Datos Aleatorios (Alta entropía)": {
+            "content": os.urandom(20000),
+            "filename": "aleatorio.bin"
+        },
+        "Texto Grande (Escalabilidad - 1MB)": {
+            "content": ("Lorem ipsum dolor sit amet..." * 3000).encode('utf-8') * 5,
+            "filename": "grande.txt"
+        }
+    }
+    
+    results = []
+    
+    print("=" * 70)
+    print(" INICIANDO PRUEBAS DE RENDIMIENTO DEL ALGORITMO DE HUFFMAN")
+    print("=" * 70)
+    
+    for name, info in test_cases.items():
+        orig_path = os.path.join(temp_dir, info["filename"])
+        comp_path = orig_path + ".huff"
+        decomp_path = orig_path + ".decomp"
+        
+        with open(orig_path, 'wb') as f:
+            f.write(info["content"])
+            
+        orig_size = os.path.getsize(orig_path)
+        
+        start_time = time.perf_counter()
+        compressor.compress(orig_path, comp_path)
+        comp_time = (time.perf_counter() - start_time) * 1000
+        
+        comp_size = os.path.getsize(comp_path)
+        
+        start_time = time.perf_counter()
+        compressor.decompress(comp_path, decomp_path)
+        decomp_time = (time.perf_counter() - start_time) * 1000
+        
+        orig_hash = calculate_sha256(orig_path)
+        decomp_hash = calculate_sha256(decomp_path)
+        integrity_ok = orig_hash == decomp_hash
+        
+        ratio = comp_size / orig_size if orig_size > 0 else 0
+        savings = (1 - ratio) * 100
+        
+        results.append({
+            "name": name,
+            "orig_size": orig_size,
+            "comp_size": comp_size,
+            "savings": savings,
+            "comp_time": comp_time,
+            "decomp_time": decomp_time,
+            "integrity": "ÉXITO" if integrity_ok else "FALLO"
+        })
+        
+        print(f"[-] Caso: {name}")
+        print(f"    Tamaño original: {orig_size:,} bytes | Comprimido: {comp_size:,} bytes")
+        print(f"    Ahorro de espacio: {savings:.2f}%")
+        print(f"    Tiempo Compresión: {comp_time:.2f} ms | Descompresión: {decomp_time:.2f} ms")
+        print(f"    Validación Integridad: {'PASS' if integrity_ok else 'FAIL'}")
+        print("-" * 70)
+    
+    print(f"Pruebas completadas con éxito.")
+
+if __name__ == "__main__":
+    run_tests()
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD V -->
+        <section id="unidad-5">
+            <h2 class="unit-title">UNIDAD V — Estructuras Avanzadas y Optimización</h2>
+            
+            <!-- Meta 5.1 -->
+            <div class="meta-container glass" id="meta-5-1">
+                <h3 class="meta-title">Meta 5.1 — Árbol Trie y Optimización de Recursos</h3>
+                <p class="meta-desc">Implementación optimizada de un Árbol de Prefijos (Trie) con autocompletado por relevancia mediante Min-Heap, seguridad ante concurrencia con RLock, y reducción de overhead de memoria mediante __slots__. Incluye simulación de benchmark comparativo entre Trie y Lista convencional sobre un diccionario de 1,100 palabras generadas combinatoriamente.</p>
+                
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>trie.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                    </div>
+                    <pre><div class="line-numbers"></div><code class="language-python">
+import threading
+import sys
+import heapq
+from typing import Dict, Any, List, Tuple, Optional
+
+class TrieNode:
+    """
+    Nodo del arbol Trie.
+    Usa __slots__ para reducir consumo de memoria RAM.
+    """
+    __slots__ = ('children', 'is_end_of_word', 'frequency', 'value')
+
+    def __init__(self):
+        self.children: Dict[str, 'TrieNode'] = {}
+        self.is_end_of_word: bool = False
+        self.frequency: int = 0
+        self.value: Any = None
+
+class Trie:
+    """
+    Arbol Trie optimizado con Slots, Thread-safety y heapq.
+    """
+    __slots__ = ('root', '_lock')
+
+    def __init__(self):
+        self.root = TrieNode()
+        self._lock = threading.RLock()
+
+    def insert(self, word: str, value: Any = None, frequency: int = 1) -> None:
+        if not word:
+            return
+
+        word = word.lower()
+        with self._lock:
+            current = self.root
+            for char in word:
+                if char not in current.children:
+                    current.children[char] = TrieNode()
+                current = current.children[char]
+            
+            current.is_end_of_word = True
+            current.frequency += frequency
+            if value is not None:
+                current.value = value
+
+    def search(self, word: str) -> Tuple[bool, Optional[Any], int]:
+        if not word:
+            return False, None, 0
+
+        word = word.lower()
+        with self._lock:
+            current = self.root
+            for char in word:
+                if char not in current.children:
+                    return False, None, 0
+                current = current.children[char]
+            
+            if current.is_end_of_word:
+                return True, current.value, current.frequency
+            return False, None, 0
+
+    def delete(self, word: str) -> bool:
+        if not word:
+            return False
+
+        word = word.lower()
+        with self._lock:
+            success, _ = self._delete_helper(self.root, word, 0)
+            return success
+
+    def _delete_helper(self, current: TrieNode, word: str, index: int) -> Tuple[bool, bool]:
+        if index == len(word):
+            if not current.is_end_of_word:
+                return False, False
+            current.is_end_of_word = False
+            current.frequency = 0
+            current.value = None
+            return True, len(current.children) == 0
+
+        char = word[index]
+        if char not in current.children:
+            return False, False
+
+        success, should_delete_child = self._delete_helper(current.children[char], word, index + 1)
+
+        if should_delete_child:
+            del current.children[char]
+            return success, len(current.children) == 0 and not current.is_end_of_word
+
+        return success, False
+
+    def autocomplete(self, prefix: str, limit: int = 5) -> List[Tuple[str, int, Any]]:
+        prefix = prefix.lower()
+        with self._lock:
+            current = self.root
+            for char in prefix:
+                if char not in current.children:
+                    return []
+                current = current.children[char]
+
+            heap: List[Tuple[int, str, Any]] = []
+            
+            def dfs(node: TrieNode, current_word: str):
+                if node.is_end_of_word:
+                    item = (node.frequency, current_word, node.value)
+                    if len(heap) < limit:
+                        heapq.heappush(heap, item)
+                    else:
+                        if node.frequency > heap[0][0]:
+                            heapq.heappushpop(heap, item)
+
+                for char, child_node in node.children.items():
+                    dfs(child_node, current_word + char)
+
+            dfs(current, prefix)
+
+            results = []
+            while heap:
+                freq, word, val = heapq.heappop(heap)
+                results.append((word, freq, val))
+            
+            return results[::-1]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.insert(key, value, frequency=1)
+
+    def __getitem__(self, key: str) -> Any:
+        exists, value, _ = self.search(key)
+        if not exists:
+            raise KeyError(key)
+        return value
+
+    def __contains__(self, key: str) -> bool:
+        exists, _, _ = self.search(key)
+        return exists
+
+    def get(self, key: str, default: Any = None) -> Any:
+        exists, value, _ = self.search(key)
+        return value if exists else default
+
+    def get_stats(self) -> Dict[str, Any]:
+        total_nodes = 0
+        total_words = 0
+        total_characters_in_words = 0
+
+        with self._lock:
+            def traverse(node: TrieNode, depth: int):
+                nonlocal total_nodes, total_words, total_characters_in_words
+                total_nodes += 1
+                if node.is_end_of_word:
+                    total_words += 1
+                    total_characters_in_words += depth
+                
+                for child in node.children.values():
+                    traverse(child, depth + 1)
+
+            traverse(self.root, 0)
+
+        trie_mem = self._estimate_trie_memory(self.root)
+        list_est_mem = 0
+        words_list = []
+        
+        with self._lock:
+            def collect_words(node: TrieNode, current_word: str):
+                if node.is_end_of_word:
+                    words_list.append(current_word)
+                for char, child in node.children.items():
+                    collect_words(child, current_word + char)
+            collect_words(self.root, "")
+
+        for w in words_list:
+            list_est_mem += sys.getsizeof(w)
+        list_est_mem += sys.getsizeof(words_list)
+
+        ahorro_bytes = max(0, list_est_mem - trie_mem)
+        porcentaje_ahorro = (ahorro_bytes / list_est_mem * 100) if list_est_mem > 0 else 0
+
+        return {
+            "total_nodos": total_nodes,
+            "total_palabras": total_words,
+            "caracteres_totales_sin_trie": total_characters_in_words,
+            "memoria_trie_estimada_bytes": trie_mem,
+            "memoria_lista_estimada_bytes": list_est_mem,
+            "ahorro_memoria_bytes": ahorro_bytes,
+            "porcentaje_ahorro_memoria": round(porcentaje_ahorro, 2)
+        }
+
+    def _estimate_trie_memory(self, node: TrieNode) -> int:
+        size = sys.getsizeof(node)
+        size += sys.getsizeof(node.children)
+        
+        for char in node.children.keys():
+            size += sys.getsizeof(char)
+        
+        for child in node.children.values():
+            size += self._estimate_trie_memory(child)
+            
+        return size
+
+if __name__ == "__main__":
+    import time
+    import random
+    
+    print("=" * 60)
+    print("  SIMULACION DE OPTIMIZACION DE RECURSOS CON ARBOL TRIE  ")
+    print("=" * 60)
+    
+    trie = Trie()
+    
+    prefijos_comunes = ["auto", "tele", "trans", "super", "inter", "sub", "contra", "multi", "micro", "anti"]
+    raices = ["comput", "program", "sistem", "estruct", "algorit", "funcion", "dat", "analis", "archiv", "memori"]
+    sufijos = ["acion", "ador", "atico", "ar", "al", "ismo", "ado", "s", "mente", "able"]
+    
+    diccionario_grande = []
+    for pref in prefijos_comunes:
+        for rac in raices:
+            for suf in sufijos:
+                w1 = pref + rac + suf
+                w2 = rac + suf
+                diccionario_grande.extend([w1, w2])
+    
+    diccionario_grande = list(set(diccionario_grande))
+    random.seed(42)
+    random.shuffle(diccionario_grande)
+    
+    print(f"Cargando {len(diccionario_grande):,} palabras en las estructuras...")
+    
+    start_time = time.perf_counter()
+    lista_palabras = []
+    for pal in diccionario_grande:
+        lista_palabras.append(pal)
+    time_lista = time.perf_counter() - start_time
+    
+    start_time = time.perf_counter()
+    for i, pal in enumerate(diccionario_grande):
+        freq = 100 - len(pal) + (i % 15)
+        trie.insert(pal, value=f"Def_Meta5.1_{pal.upper()}", frequency=max(1, freq))
+    time_trie = time.perf_counter() - start_time
+    
+    print(f"-> Tiempo de carga en Lista convencional: {time_lista * 1000:.4f} ms")
+    print(f"-> Tiempo de carga en Arbol Trie:        {time_trie * 1000:.4f} ms")
+    print("-" * 60)
+    
+    stats = trie.get_stats()
+    print("ANALISIS DE MEMORIA (Peculiaridad de Python):")
+    print(f"  * Total de palabras almacenadas:       {stats['total_palabras']:,}")
+    print(f"  * Total de nodos creados en el Trie:    {stats['total_nodos']:,}")
+    print(f"  * Total de caracteres teoricos:        {stats['caracteres_totales_sin_trie']:,} letras")
+    print(f"  * Memoria estimada en Lista:           {stats['memoria_lista_estimada_bytes']:,} bytes")
+    print(f"  * Memoria estimada en Trie:            {stats['memoria_trie_estimada_bytes']:,} bytes")
+    print("\n  [Analisis de Ingenieria]")
+    print("  En Python cada objeto (nodos e hijos dict) tiene overhead sustancial en C (GC, tipos).")
+    print("  Trie evita redundancia de strings, pero overhead de objetos supera al string crudo.")
+    print("  Nota: En lenguajes de bajo nivel (C/C++), la optimizacion en memoria es de hasta 70%.")
+    print("-" * 60)
+    
+    prefijo_busqueda = "transcomput"
+    print(f"PRUEBA DE RENDIMIENTO: 1,000 busquedas del prefijo '{prefijo_busqueda}'")
+    
+    start_time = time.perf_counter()
+    for _ in range(1000):
+        resultados_lista = [w for w in lista_palabras if w.startswith(prefijo_busqueda)]
+        resultados_lista.sort()
+        resultados_lista = resultados_lista[:5]
+    time_search_lista = time.perf_counter() - start_time
+    
+    start_time = time.perf_counter()
+    for _ in range(1000):
+        resultados_trie = trie.autocomplete(prefijo_busqueda, limit=5)
+    time_search_trie = time.perf_counter() - start_time
+    
+    print(f"-> Sugerencias en Lista (Top 5): {[w for w in resultados_lista]}")
+    print(f"-> Sugerencias en Trie  (Top 5): {[w for w, _, _ in resultados_trie]}")
+    print(f"-> Tiempo total (1,000 busquedas) en Lista: {time_search_lista * 1000:.2f} ms")
+    print(f"-> Tiempo total (1,000 busquedas) en Trie:  {time_search_trie * 1000:.2f} ms")
+    
+    factor_velocidad = time_search_lista / time_search_trie if time_search_trie > 0 else 1
+    print(f"=> El Trie de autocompletado es {factor_velocidad:.1f} veces mas rapido que la Lista en busquedas recurrentes!")
+    print("=" * 60)
+</code></pre>
+                </div>
+
+                <div class="test-section">
+                    <h4 class="test-title">Pruebas de Escritorio — Análisis de Escenarios</h4>
+                    <div class="placeholder-grid">
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Mejor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Caso Promedio</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">Peor Caso</span>
+                            <span class="placeholder-text">QUEQUE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REFLEXION -->
+        <section id="reflexion">
+            <div class="meta-container glass">
+                <h3 class="meta-title">Reflexión Final: Importancia de la Optimización de Recursos de la Computadora</h3>
+                <div class="reflexion-content">
+                    <p>A lo largo de esta asignatura, he consolidado un entendimiento riguroso sobre cómo la selección adecuada de estructuras de datos y algoritmos incide directamente en la eficiencia y escalabilidad de los sistemas de software. Desde la implementación de arreglos estáticos y la medición del costo computacional de operaciones aritméticas con distintos tipos de dato en la Unidad I, hasta el desarrollo de estructuras avanzadas como Árboles de Prefijos (Tries) optimizados con __slots__ y Min-Heaps en la Unidad V, cada práctica me ha permitido observar de primera mano la diferencia entre una solución funcional y una solución eficiente.</p>
+                    <p>La optimización de recursos de la computadora —tanto en tiempo de CPU como en consumo de memoria RAM— no es un lujo académico, sino una necesidad imperativa en el desarrollo de software profesional. Algoritmos con complejidad cuadrática O(n²), como Bubble Sort, resultan funcionales para conjuntos pequeños de datos, pero escalan de manera inaceptable conforme el volumen de información crece. Refactorizar hacia enfoques de complejidad O(n log n), como Merge Sort, o incluso O(log n), como la Búsqueda Binaria, representa la diferencia entre un sistema que responde en milisegundos y uno que colapsa bajo carga real.</p>
+                    <p>El análisis exhaustivo de los tres escenarios posibles —mejor, promedio y peor caso— para cada algoritmo implementado me ha brindado un criterio de ingeniería fundamental: anticipar el comportamiento del software bajo condiciones extremas antes de desplegarlo en producción. Este rigor analítico, combinado con la implementación práctica de estructuras no lineales como Grafos Dirigidos con Ordenamiento Topológico, Árboles Binarios de Búsqueda, algoritmos de compresión como Huffman y estructuras de indexación como el Trie, me ha dotado de las herramientas necesarias para diseñar soluciones que no solo funcionen correctamente, sino que brinden la mejor experiencia de usuario posible con un consumo óptimo de los recursos computacionales disponibles.</p>
+                    <p>En conclusión, la ingeniería de software trasciende la mera escritura de código funcional. Requiere un dominio profundo de la teoría algorítmica, una comprensión clara de las limitaciones del hardware y del lenguaje de programación utilizado, y la capacidad de evaluar trade-offs entre tiempo, espacio y complejidad de implementación. Las competencias adquiridas en esta asignatura constituyen un pilar fundamental para mi formación como desarrollador de software, permitiéndome abordar cualquier problemática computacional con criterio técnico, eficiencia y responsabilidad profesional.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Toggle Sidebar Nav Categories
+        function toggleNav(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+        }
+
+        // Copy Code Function
+        function copyCode(button) {
+            const wrapper = button.closest('.code-wrapper');
+            const code = wrapper.querySelector('code').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = '¡Copiado!';
+                button.style.background = 'rgba(152, 195, 121, 0.3)';
+                button.style.color = '#98c379';
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                    button.style.color = '';
+                }, 2000);
+            });
+        }
+
+        // Generate Line Numbers
+        document.querySelectorAll('pre').forEach(pre => {
+            const code = pre.querySelector('code');
+            const lineNumbers = pre.querySelector('.line-numbers');
+            if (code && lineNumbers) {
+                const lines = code.innerHTML.split('\n');
+                // Remove empty first/last lines if present due to formatting
+                if(lines[0].trim() === '') lines.shift();
+                if(lines[lines.length-1].trim() === '') lines.pop();
+                
+                code.innerHTML = lines.join('\n');
+                lineNumbers.innerHTML = Array(lines.length).fill(0).map((_, i) => i + 1).join('\n');
+            }
+        });
+
+        // Simple Syntax Highlighting
+        function highlightSyntax() {
+            document.querySelectorAll('code').forEach(block => {
+                let html = block.innerHTML;
+                
+                // Comments
+                html = html.replace(/(#.*)/g, '<span class="token comment">$1</span>');
+                html = html.replace(/(\/\/.*)/g, '<span class="token comment">$1</span>');
+                html = html.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="token comment">$1</span>');
+                
+                // Strings
+                html = html.replace(/(["'])(.*?)\1/g, '<span class="token string">$1$2$1</span>');
+                
+                // Keywords
+                const keywords = ['def ', 'class ', 'import ', 'from ', 'if ', 'elif ', 'else:', 'else ', 'while ', 'for ', 'in ', 'return ', 'break', 'continue', 'pass', 'try:', 'except ', 'with ', 'as ', 'nonlocal ', 'yield ', 'and ', 'or ', 'not ', 'is ', 'None', 'True', 'False', 'int', 'float', 'double', '#include', 'printf', 'scanf', 'volatile', 'void', 'include', 'main'];
+                keywords.forEach(kw => {
+                    const regex = new RegExp(`\\b${kw.replace(/ /g, '')}\\b(?=(?:(?:[^"']*["']){2})*[^"']*$)`, 'g');
+                    html = html.replace(regex, `<span class="token keyword">$&</span>`);
+                });
+                
+                // Functions
+                html = html.replace(/\b([a-zA-Z_]\w*)(?=\()/g, '<span class="token function">$1</span>');
+                
+                // Numbers
+                html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="token number">$1</span>');
+
+                block.innerHTML = html;
+            });
+        }
+        highlightSyntax();
+
+        // Scroll and Active Section Highlights
+        const sections = document.querySelectorAll('.meta-container');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('active');
+                    // Ensure parent is open
+                    link.closest('.nav-item').classList.add('active');
+                }
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Back to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
