@@ -315,15 +315,80 @@ int main(){
 }</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            <h4>Pruebas de Escritorio &mdash; Análisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">El programa <b>calificaciones.c</b> recorre un arreglo de tamaño fijo n=5 con un ciclo <code>for</code>. Al ser un ciclo de longitud constante, la complejidad es <b>O(n)</b> donde n=5, equivalente en la práctica a <b>O(1)</b> (tiempo constante). No existe variación entre escenarios porque el ciclo siempre ejecuta exactamente 5 iteraciones.</p>
+            <p style="color:#aaaaaa; margin-bottom:15px;">El programa <b>prueba_ejecucion.c</b> ejecuta 100,000,000 de iteraciones fijas por cada operación aritmética. Su complejidad es <b>O(1)</b> por operación (el número de iteraciones es una constante definida por <code>#define</code>).</p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Mejor Caso — O(1)</u></b></p>
+                <p style="color:#aaaaaa;">Entrada: Calificaciones altas → [100, 95, 98, 92, 100]</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Calificacion de materia 1: 100
+Calificacion de materia 2: 95
+Calificacion de materia 3: 98
+Calificacion de materia 4: 92
+Calificacion de materia 5: 100
+
+Calificaciones ingresadas:
+  Materia 1: 100.00
+  Materia 2: 95.00
+  Materia 3: 98.00
+  Materia 4: 92.00
+  Materia 5: 100.00
+
+Promedio: 97.00
+Estado: APROBADO
+</pre>
+                <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → verdadero).</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Caso Promedio — O(1)</u></b></p>
+                <p style="color:#aaaaaa;">Entrada: Calificaciones mixtas → [70, 85, 55, 90, 60]</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Calificacion de materia 1: 70
+Calificacion de materia 2: 85
+Calificacion de materia 3: 55
+Calificacion de materia 4: 90
+Calificacion de materia 5: 60
+
+Calificaciones ingresadas:
+  Materia 1: 70.00
+  Materia 2: 85.00
+  Materia 3: 55.00
+  Materia 4: 90.00
+  Materia 5: 60.00
+
+Promedio: 72.00
+Estado: APROBADO
+</pre>
+                <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → verdadero).</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Peor Caso — O(1)</u></b></p>
+                <p style="color:#aaaaaa;">Entrada: Calificaciones reprobatorias → [30, 45, 20, 50, 35]</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Calificacion de materia 1: 30
+Calificacion de materia 2: 45
+Calificacion de materia 3: 20
+Calificacion de materia 4: 50
+Calificacion de materia 5: 35
+
+Calificaciones ingresadas:
+  Materia 1: 30.00
+  Materia 2: 45.00
+  Materia 3: 20.00
+  Materia 4: 50.00
+  Materia 5: 35.00
+
+Promedio: 36.00
+Estado: REPROBADO
+</pre>
+                <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → falso, se ejecuta el <code>else</code>).</p>
             </div>
+
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Al tratarse de un arreglo de tamaño fijo (n=5), el algoritmo tiene complejidad constante O(1) en los tres escenarios. El programa de prueba de ejecución confirma que las operaciones aritméticas con <code>int</code>, <code>float</code> y <code>double</code> toman tiempos similares por iteración, sin variación significativa entre tipos de dato en hardware moderno con FPU.</p>
         </div>
 
         <div id="meta1.2" class="meta-section">
@@ -420,15 +485,95 @@ while True:
         print("Opcion invalida")</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            <h4>Pruebas de Escritorio &mdash; Análisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">Se analizan las operaciones de <b>Pila</b> (<code>push</code>/<code>pop</code>) y <b>Cola</b> (<code>enqueue</code>/<code>dequeue</code>) sobre el arreglo <code>datos[]</code>. La diferencia clave es que <code>pop()</code> elimina del final en O(1), mientras que <code>pop(0)</code> (dequeue) elimina del inicio y desplaza todos los elementos restantes en <b>O(n)</b>.</p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Mejor Caso — O(1)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: Solo operaciones de Pila (push y pop). No hay desplazamiento de elementos.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+===== MENU =====
+Selecciona una opcion: 1
+Ingresa un dato para la pila: A
+                                    datos = ["A"]
+
+Selecciona una opcion: 1
+Ingresa un dato para la pila: B
+                                    datos = ["A", "B"]
+
+Selecciona una opcion: 1
+Ingresa un dato para la pila: C
+                                    datos = ["A", "B", "C"]
+
+Selecciona una opcion: 2
+Dato eliminado: C       ← pop() del final, O(1)
+                                    datos = ["A", "B"]
+
+Selecciona una opcion: 2
+Dato eliminado: B       ← pop() del final, O(1)
+                                    datos = ["A"]
+</pre>
+                <p style="color:#aaaaaa;">Todas las operaciones son <b>O(1)</b>: <code>append()</code> agrega al final y <code>pop()</code> sin índice elimina del final, sin necesidad de mover elementos.</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: Mezcla de operaciones de Pila y Cola. Algunas eliminaciones desplazan elementos.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+===== MENU =====
+Selecciona una opcion: 3
+Ingresa un dato para la cola: X
+                                    datos = ["X"]
+
+Selecciona una opcion: 3
+Ingresa un dato para la cola: Y
+                                    datos = ["X", "Y"]
+
+Selecciona una opcion: 3
+Ingresa un dato para la cola: Z
+                                    datos = ["X", "Y", "Z"]
+
+Selecciona una opcion: 4
+Dato eliminado: X       ← pop(0) desplaza Y y Z una posición, O(n)
+                                    datos = ["Y", "Z"]
+
+Selecciona una opcion: 2
+Dato eliminado: Z       ← pop() del final, O(1)
+                                    datos = ["Y"]
+</pre>
+                <p style="color:#aaaaaa;">Al combinar operaciones, el costo promedio depende de la proporción de <code>dequeue</code> (O(n)) vs <code>pop</code> (O(1)).</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Peor Caso — O(n)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: Solo operaciones de Cola con dequeue sucesivo. Cada eliminación desplaza n-1 elementos.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+===== MENU =====
+(Se agregan 5 elementos: A, B, C, D, E)
+                                    datos = ["A", "B", "C", "D", "E"]
+
+Selecciona una opcion: 4
+Dato eliminado: A       ← pop(0) desplaza B,C,D,E → 4 movimientos
+                                    datos = ["B", "C", "D", "E"]
+
+Selecciona una opcion: 4
+Dato eliminado: B       ← pop(0) desplaza C,D,E → 3 movimientos
+                                    datos = ["C", "D", "E"]
+
+Selecciona una opcion: 4
+Dato eliminado: C       ← pop(0) desplaza D,E → 2 movimientos
+                                    datos = ["D", "E"]
+
+Selecciona una opcion: 4
+Dato eliminado: D       ← pop(0) desplaza E → 1 movimiento
+                                    datos = ["E"]
+
+Total de desplazamientos internos: 4+3+2+1 = 10
+</pre>
+                <p style="color:#aaaaaa;">Cada <code>pop(0)</code> tiene complejidad <b>O(n)</b> ya que Python internamente desplaza todos los elementos una posición hacia la izquierda. Para n eliminaciones consecutivas: <b>O(n²)</b> total.</p>
             </div>
+
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> La Pila (LIFO) opera en O(1) constante, mientras que la Cola (FIFO) implementada con <code>pop(0)</code> tiene un peor caso de O(n) por eliminación. En producción se utilizaría <code>collections.deque</code> para lograr O(1) en ambos extremos.</p>
         </div>
     </div>
 
@@ -495,15 +640,84 @@ print("\nBusqueda centinela: ")
 print(busqueda_centinela(arreglo, 8)) # = 3</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            <h4>Pruebas de Escritorio &mdash; Análisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">Se analiza el arreglo <code>arreglo = [14, 23, 45, 8, 19]</code> (n=5). Ambos algoritmos (Secuencial y Centinela) tienen complejidad <b>O(n)</b> en el peor caso. La búsqueda con centinela elimina la comparación de límites del ciclo <code>for</code>, reduciendo el número de operaciones por iteración, aunque la complejidad asintótica se mantiene igual.</p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Mejor Caso — O(1)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra en la primera posición (índice 0).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+arreglo = [14, 23, 45, 8, 19]      objetivo = 14
+
+── Búsqueda Secuencial ──
+  i=0: arreglo[0]=14 == 14 ✓      → Encontrado, retorna índice 0
+  Comparaciones: 1
+
+── Búsqueda Centinela ──
+  Se agrega centinela: [14, 23, 45, 8, 19, 14]
+  i=0: arreglo[0]=14 == 14 ✓      → Se detiene
+  Se elimina centinela: [14, 23, 45, 8, 19]
+  i=0 < n=5 → Encontrado, retorna índice 0
+  Comparaciones: 1
+</pre>
+                <p style="color:#aaaaaa;">Ambos algoritmos terminan en la primera iteración: <b>O(1)</b>.</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra aproximadamente a la mitad del arreglo.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+arreglo = [14, 23, 45, 8, 19]      objetivo = 45
+
+── Búsqueda Secuencial ──
+  i=0: arreglo[0]=14 ≠ 45          → continúa
+  i=1: arreglo[1]=23 ≠ 45          → continúa
+  i=2: arreglo[2]=45 == 45 ✓       → Encontrado, retorna índice 2
+  Comparaciones: 3
+
+── Búsqueda Centinela ──
+  Se agrega centinela: [14, 23, 45, 8, 19, 45]
+  i=0: arreglo[0]=14 ≠ 45          → i++
+  i=1: arreglo[1]=23 ≠ 45          → i++
+  i=2: arreglo[2]=45 == 45 ✓       → Se detiene
+  Se elimina centinela: [14, 23, 45, 8, 19]
+  i=2 < n=5 → Encontrado, retorna índice 2
+  Comparaciones: 3 (pero sin verificar i < n en cada paso del while)
+</pre>
+                <p style="color:#aaaaaa;">En promedio, ambos recorren <b>n/2</b> elementos. La ventaja del centinela es que ahorra una comparación por iteración (no verifica el límite del arreglo dentro del ciclo).</p>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+                <p><b><u>Peor Caso — O(n)</u></b></p>
+                <p style="color:#aaaaaa;">Escenario: El elemento buscado no existe en el arreglo. Se debe recorrer todo.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+arreglo = [14, 23, 45, 8, 19]      objetivo = 99
+
+── Búsqueda Secuencial ──
+  i=0: arreglo[0]=14 ≠ 99          → continúa
+  i=1: arreglo[1]=23 ≠ 99          → continúa
+  i=2: arreglo[2]=45 ≠ 99          → continúa
+  i=3: arreglo[3]=8  ≠ 99          → continúa
+  i=4: arreglo[4]=19 ≠ 99          → continúa
+  Fin del arreglo → No encontrado, retorna -1
+  Comparaciones: 5 (n) + 5 verificaciones de i < len(lista) = 10 operaciones
+
+── Búsqueda Centinela ──
+  Se agrega centinela: [14, 23, 45, 8, 19, 99]
+  i=0: arreglo[0]=14 ≠ 99          → i++
+  i=1: arreglo[1]=23 ≠ 99          → i++
+  i=2: arreglo[2]=45 ≠ 99          → i++
+  i=3: arreglo[3]=8  ≠ 99          → i++
+  i=4: arreglo[4]=19 ≠ 99          → i++
+  i=5: arreglo[5]=99 == 99 ✓       → Se detiene (encontró el centinela)
+  Se elimina centinela: [14, 23, 45, 8, 19]
+  i=5 ≥ n=5 → NO encontrado, retorna -1
+  Comparaciones: 6 (sin verificaciones de límite = solo 6 operaciones)
+</pre>
+                <p style="color:#aaaaaa;">Ambos tienen complejidad <b>O(n)</b>, pero el centinela realiza <b>n+1 comparaciones simples</b> vs <b>2n comparaciones</b> (dato + límite) de la búsqueda secuencial, logrando hasta un 50% menos de operaciones por iteración en la práctica.</p>
             </div>
+
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Ambas búsquedas son O(n) en el peor caso. La búsqueda con centinela optimiza el rendimiento real al eliminar la comprobación de límites <code>i &lt; len(lista)</code> en cada iteración del ciclo, a cambio de un <code>append</code> y <code>pop</code> adicional.</p>
         </div>
     </div>
 
