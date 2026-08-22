@@ -129,6 +129,29 @@
             text-decoration: underline;
             color: #ffffff;
         }
+        .scenario-row {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            border: 1px dashed #aaaaaa;
+            padding: 15px;
+        }
+        .scenario-content {
+            flex: 3;
+            text-align: left;
+        }
+        .scenario-graph {
+            flex: 1;
+            min-width: 150px;
+            border: 1px dashed #555555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            color: #888888;
+            font-size: 12px;
+        }
         .reflection-content {
             text-align: justify;
             line-height: 1.6;
@@ -319,7 +342,9 @@ int main(){
             <p style="color:#aaaaaa; margin-bottom:15px;">El programa <b>calificaciones.c</b> recorre un arreglo de tamaño fijo n=5 con un ciclo <code>for</code>. Al ser un ciclo de longitud constante, la complejidad es <b>O(n)</b> donde n=5, equivalente en la práctica a <b>O(1)</b> (tiempo constante). No existe variación entre escenarios porque el ciclo siempre ejecuta exactamente 5 iteraciones.</p>
             <p style="color:#aaaaaa; margin-bottom:15px;">El programa <b>prueba_ejecucion.c</b> ejecuta 100,000,000 de iteraciones fijas por cada operación aritmética. Su complejidad es <b>O(1)</b> por operación (el número de iteraciones es una constante definida por <code>#define</code>).</p>
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+            <div class="scenario-row">
+                <div class="scenario-content">
+
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones altas → [100, 95, 98, 92, 100]</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -340,9 +365,14 @@ Promedio: 97.00
 Estado: APROBADO
 </pre>
                 <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → verdadero).</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Caso Promedio — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones mixtas → [70, 85, 55, 90, 60]</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -363,9 +393,14 @@ Promedio: 72.00
 Estado: APROBADO
 </pre>
                 <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → verdadero).</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Peor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones reprobatorias → [30, 45, 20, 50, 35]</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -386,9 +421,12 @@ Promedio: 36.00
 Estado: REPROBADO
 </pre>
                 <p style="color:#aaaaaa;">Iteraciones del ciclo: <b>5</b> (fijo). Comparaciones: <b>1</b> (promedio >= 60 → falso, se ejecuta el <code>else</code>).</p>
-            </div>
-
-            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Al tratarse de un arreglo de tamaño fijo (n=5), el algoritmo tiene complejidad constante O(1) en los tres escenarios. El programa de prueba de ejecución confirma que las operaciones aritméticas con <code>int</code>, <code>float</code> y <code>double</code> toman tiempos similares por iteración, sin variación significativa entre tipos de dato en hardware moderno con FPU.</p>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Al tratarse de un arreglo de tamaño fijo (n=5), el algoritmo tiene complejidad constante O(1) en los tres escenarios. El programa de prueba de ejecución confirma que las operaciones aritméticas con <code>int</code>, <code>float</code> y <code>double</code> toman tiempos similares por iteración, sin variación significativa entre tipos de dato en hardware moderno con FPU.</p>
         </div>
 
         <div id="meta1.2" class="meta-section">
@@ -488,7 +526,9 @@ while True:
             <h4>Pruebas de Escritorio &mdash; Análisis de Escenarios</h4>
             <p style="color:#aaaaaa; margin-bottom:15px;">Se analizan las operaciones de <b>Pila</b> (<code>push</code>/<code>pop</code>) y <b>Cola</b> (<code>enqueue</code>/<code>dequeue</code>) sobre el arreglo <code>datos[]</code>. La diferencia clave es que <code>pop()</code> elimina del final en O(1), mientras que <code>pop(0)</code> (dequeue) elimina del inicio y desplaza todos los elementos restantes en <b>O(n)</b>.</p>
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+            <div class="scenario-row">
+                <div class="scenario-content">
+
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Solo operaciones de Pila (push y pop). No hay desplazamiento de elementos.</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -514,9 +554,14 @@ Dato eliminado: B       ← pop() del final, O(1)
                                     datos = ["A"]
 </pre>
                 <p style="color:#aaaaaa;">Todas las operaciones son <b>O(1)</b>: <code>append()</code> agrega al final y <code>pop()</code> sin índice elimina del final, sin necesidad de mover elementos.</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Mezcla de operaciones de Pila y Cola. Algunas eliminaciones desplazan elementos.</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -542,9 +587,14 @@ Dato eliminado: Z       ← pop() del final, O(1)
                                     datos = ["Y"]
 </pre>
                 <p style="color:#aaaaaa;">Al combinar operaciones, el costo promedio depende de la proporción de <code>dequeue</code> (O(n)) vs <code>pop</code> (O(1)).</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Peor Caso — O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Solo operaciones de Cola con dequeue sucesivo. Cada eliminación desplaza n-1 elementos.</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -571,9 +621,12 @@ Dato eliminado: D       ← pop(0) desplaza E → 1 movimiento
 Total de desplazamientos internos: 4+3+2+1 = 10
 </pre>
                 <p style="color:#aaaaaa;">Cada <code>pop(0)</code> tiene complejidad <b>O(n)</b> ya que Python internamente desplaza todos los elementos una posición hacia la izquierda. Para n eliminaciones consecutivas: <b>O(n²)</b> total.</p>
-            </div>
-
-            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> La Pila (LIFO) opera en O(1) constante, mientras que la Cola (FIFO) implementada con <code>pop(0)</code> tiene un peor caso de O(n) por eliminación. En producción se utilizaría <code>collections.deque</code> para lograr O(1) en ambos extremos.</p>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> La Pila (LIFO) opera en O(1) constante, mientras que la Cola (FIFO) implementada con <code>pop(0)</code> tiene un peor caso de O(n) por eliminación. En producción se utilizaría <code>collections.deque</code> para lograr O(1) en ambos extremos.</p>
         </div>
     </div>
 
@@ -643,7 +696,9 @@ print(busqueda_centinela(arreglo, 8)) # = 3</pre>
             <h4>Pruebas de Escritorio &mdash; Análisis de Escenarios</h4>
             <p style="color:#aaaaaa; margin-bottom:15px;">Se analiza el arreglo <code>arreglo = [14, 23, 45, 8, 19]</code> (n=5). Ambos algoritmos (Secuencial y Centinela) tienen complejidad <b>O(n)</b> en el peor caso. La búsqueda con centinela elimina la comparación de límites del ciclo <code>for</code>, reduciendo el número de operaciones por iteración, aunque la complejidad asintótica se mantiene igual.</p>
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
+            <div class="scenario-row">
+                <div class="scenario-content">
+
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra en la primera posición (índice 0).</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -661,9 +716,14 @@ arreglo = [14, 23, 45, 8, 19]      objetivo = 14
   Comparaciones: 1
 </pre>
                 <p style="color:#aaaaaa;">Ambos algoritmos terminan en la primera iteración: <b>O(1)</b>.</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra aproximadamente a la mitad del arreglo.</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -685,9 +745,14 @@ arreglo = [14, 23, 45, 8, 19]      objetivo = 45
   Comparaciones: 3 (pero sin verificar i < n en cada paso del while)
 </pre>
                 <p style="color:#aaaaaa;">En promedio, ambos recorren <b>n/2</b> elementos. La ventaja del centinela es que ahorra una comparación por iteración (no verifica el límite del arreglo dentro del ciclo).</p>
-            </div>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><div class="scenario-row">
+                <div class="scenario-content">
 
-            <div class="queque-placeholder" style="text-align:left; padding:20px;">
                 <p><b><u>Peor Caso — O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado no existe en el arreglo. Se debe recorrer todo.</p>
 <pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
@@ -715,9 +780,12 @@ arreglo = [14, 23, 45, 8, 19]      objetivo = 99
   Comparaciones: 6 (sin verificaciones de límite = solo 6 operaciones)
 </pre>
                 <p style="color:#aaaaaa;">Ambos tienen complejidad <b>O(n)</b>, pero el centinela realiza <b>n+1 comparaciones simples</b> vs <b>2n comparaciones</b> (dato + límite) de la búsqueda secuencial, logrando hasta un 50% menos de operaciones por iteración en la práctica.</p>
-            </div>
-
-            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Ambas búsquedas son O(n) en el peor caso. La búsqueda con centinela optimiza el rendimiento real al eliminar la comprobación de límites <code>i &lt; len(lista)</code> en cada iteración del ciclo, a cambio de un <code>append</code> y <code>pop</code> adicional.</p>
+            
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O</span>
+                </div>
+            </div><p style="color:#aaaaaa; margin-top:15px;"><b>Conclusión:</b> Ambas búsquedas son O(n) en el peor caso. La búsqueda con centinela optimiza el rendimiento real al eliminar la comprobación de límites <code>i &lt; len(lista)</code> en cada iteración del ciclo, a cambio de un <code>append</code> y <code>pop</code> adicional.</p>
         </div>
     </div>
 
@@ -822,15 +890,66 @@ sortedArr = mergeSort(my_array)
 print("Ordenado con Merge Sort:", sortedArr)</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">Se analizan cuatro algoritmos de ordenamiento sobre un arreglo de 100 elementos. Bubble Sort, Selection Sort e Insertion Sort son O(n&sup2;) en el caso promedio y peor, mientras que Merge Sort mantiene O(n log n) en todos los escenarios gracias a su estrategia de Divide y Vencer&aacute;s.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; O(n) a O(n log n)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Arreglo ya ordenado [9, 10, 12, 18, 19, ... , 976, 981]. n=100.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Bubble Sort:     100 pasadas, 0 intercambios         → O(n²) [sin optimizar]
+Selection Sort:  100 pasadas, 100 extracciones          → O(n²) siempre
+Insertion Sort:  99 pasadas, 0 desplazamientos          → O(n) ← MEJOR
+Merge Sort:      7 niveles de división, 100 fusiones    → O(n log n)
+
+Resultado: [9, 10, 12, 18, 19, 23, 29, 34, ..., 968, 976, 981]
+(Arreglo sin cambios, ya estaba ordenado)</pre>
+                    <p style="color:#aaaaaa;">Insertion Sort brilla en el mejor caso: al estar ordenado, nunca desplaza. Merge Sort mantiene O(n log n) sin importar el orden inicial.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(n)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; O(n&sup2;) a O(n log n)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Arreglo parcialmente desordenado (datos originales del programa). n=100.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Bubble Sort:     ~4,950 comparaciones, ~2,400 intercambios   → O(n²)
+Selection Sort:  ~4,950 comparaciones, 99 intercambios           → O(n²)
+Insertion Sort:  ~2,500 desplazamientos promedio                 → O(n²)
+Merge Sort:      7 niveles × ~100 comparaciones por nivel        → O(n log n)
+
+Arreglo original: [842, 12, 934, 10, 563, 712, 45, ...]
+Resultado:        [9, 10, 12, 18, 19, 23, 29, 34, ..., 976, 981]</pre>
+                    <p style="color:#aaaaaa;">Merge Sort requiere ~700 comparaciones vs ~4,950 de los algoritmos cuadr&aacute;ticos. Factor de mejora: <b>7x m&aacute;s r&aacute;pido</b>.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(n&sup2;)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; O(n&sup2;)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Arreglo ordenado de forma inversa [981, 976, 968, ..., 12, 10, 9]. n=100.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Bubble Sort:     4,950 comparaciones, 4,950 intercambios     → O(n²) MÁXIMO
+Selection Sort:  4,950 comparaciones, 99 intercambios            → O(n²)
+Insertion Sort:  4,950 desplazamientos (cada elemento va al inicio) → O(n²) MÁXIMO
+Merge Sort:      7 niveles × ~100 comparaciones                  → O(n log n) SIN CAMBIO
+
+Merge Sort no se degrada: siempre divide a la mitad independientemente del orden.</pre>
+                    <p style="color:#aaaaaa;">Los algoritmos cuadr&aacute;ticos alcanzan su m&aacute;ximo costo. Merge Sort mantiene O(n log n) incluso en el peor escenario, demostrando su superioridad para conjuntos grandes.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(n&sup2;) vs O(n log n)</span>
+                </div>
             </div>
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> Para n=100, la diferencia es notable pero manejable. Para n=100,000, Bubble Sort requiere ~5 mil millones de operaciones vs ~1.7 millones de Merge Sort, haciendo a los algoritmos O(n&sup2;) inviables a escala.</p>
         </div>
 
         <div id="meta3.2" class="meta-section">
@@ -978,15 +1097,88 @@ if __name__ == "__main__":
     main()</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">Se comparan tres algoritmos de b&uacute;squeda sobre un conjunto de 100,000 datos. La b&uacute;squeda secuencial recorre linealmente, la binaria divide el espacio a la mitad, y la interpolada estima la posici&oacute;n del objetivo asumiendo distribuci&oacute;n uniforme.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; O(1)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: El elemento buscado coincide con la primera posici&oacute;n evaluada por cada algoritmo.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+datos_ordenados = [1, 2, 3, ..., 100000]     objetivo = 1 (secuencial) / 50000 (binaria)
+
+── Búsqueda Secuencial (objetivo=1) ──
+  i=0: arr[0]=1 == 1 ✓              → 1 operación
+
+── Búsqueda Binaria (objetivo=50000) ──
+  mid = (0+99999)//2 = 49999
+  arr[49999]=50000 == 50000 ✓        → 1 operación
+
+── Búsqueda Interpolada (objetivo=50000) ──
+  pos = 0 + ((50000-1)*(99999-0))//(100000-1) = 49999
+  arr[49999]=50000 == 50000 ✓        → 1 operación</pre>
+                    <p style="color:#aaaaaa;">Los tres algoritmos encuentran el objetivo en una sola operaci&oacute;n en su mejor caso: <b>O(1)</b>.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(1)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; O(n) / O(log n) / O(log log n)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Objetivo aleatorio (ej: 73542) sobre 100,000 datos ordenados.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+── Búsqueda Secuencial (objetivo=73542) ──
+  Recorre i=0, 1, 2, ..., 73541
+  arr[73541]=73542 == 73542 ✓
+  Operaciones: 73,542                → O(n)
+
+── Búsqueda Binaria (objetivo=73542) ──
+  Paso 1: mid=49999, 50000<73542    → low=50000
+  Paso 2: mid=74999, 75000>73542    → high=74998
+  Paso 3: mid=62499, 62500<73542    → low=62500
+  ...continúa dividiendo...
+  Paso 17: encontrado
+  Operaciones: 17                    → O(log n) = O(log₂ 100000) ≈ 17
+
+── Búsqueda Interpolada (objetivo=73542) ──
+  Paso 1: pos estimada ≈ 73541      → encontrado casi directo
+  Operaciones: 1-3                   → O(log log n) con datos uniformes</pre>
+                    <p style="color:#aaaaaa;">Secuencial: 73,542 ops. Binaria: 17 ops. Interpolada: 1-3 ops. La interpolada es <b>~4,000x m&aacute;s r&aacute;pida</b> que la secuencial en datos uniformes.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(log n)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; O(n)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Elemento no encontrado (objetivo=0 no existe) o datos con distribuci&oacute;n no uniforme.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+── Búsqueda Secuencial (objetivo=0) ──
+  Recorre los 100,000 elementos completos
+  No encontrado → retorna -1
+  Operaciones: 100,000               → O(n)
+
+── Búsqueda Binaria (objetivo=0) ──
+  Paso 1: mid=49999, 50000>0        → high=49998
+  Paso 2: mid=24999, 25000>0        → high=24998
+  ...17 divisiones hasta que low > high
+  Operaciones: 17                    → O(log n) INCLUSO en peor caso
+
+── Búsqueda Interpolada (datos no uniformes, ej: [1,1,1,...,1,100000]) ──
+  La fórmula de estimación falla, degenerando a recorrido lineal
+  Operaciones: hasta 100,000         → O(n) en el peor caso</pre>
+                    <p style="color:#aaaaaa;">La b&uacute;squeda binaria NUNCA supera O(log n). La interpolada puede degradarse a O(n) si la distribuci&oacute;n no es uniforme. La secuencial siempre es O(n).</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(n) vs O(log n)</span>
+                </div>
             </div>
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> Para 100,000 datos ordenados uniformemente, la b&uacute;squeda interpolada es la m&aacute;s eficiente en la pr&aacute;ctica. Sin embargo, la binaria es la m&aacute;s confiable porque garantiza O(log n) independientemente de la distribuci&oacute;n.</p>
         </div>
     </div>
 
@@ -1091,15 +1283,91 @@ if __name__ == "__main__":
         print(e)</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">El Ordenamiento Topol&oacute;gico basado en DFS (Depth-First Search) tiene complejidad <b>O(V + E)</b> donde V es el n&uacute;mero de materias (v&eacute;rtices) y E el n&uacute;mero de prerrequisitos (aristas). El algoritmo visita cada nodo y cada arista exactamente una vez.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; O(V + E) con grafo disperso</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Grafo lineal simple (cadena). V=4 materias, E=3 aristas. M&iacute;nima cantidad de aristas.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Grafo: Lógica → HTML/CSS → Frontend(JS) → React
+
+DFS desde "Lógica de Programacion":
+  Visitar "Lógica"     → estado=1 (visitando)
+    Visitar "HTML/CSS"  → estado=1
+      Visitar "Frontend" → estado=1
+        Visitar "React"  → estado=1
+        React: sin vecinos → estado=2, pila=[React]
+      Frontend → estado=2, pila=[React, Frontend]
+    HTML/CSS → estado=2, pila=[React, Frontend, HTML/CSS]
+  Lógica → estado=2, pila=[React, Frontend, HTML/CSS, Lógica]
+
+Resultado (reversa): Lógica → HTML/CSS → Frontend(JS) → React
+Operaciones: V + E = 4 + 3 = 7</pre>
+                    <p style="color:#aaaaaa;">Con un grafo disperso (pocas aristas), el algoritmo realiza el m&iacute;nimo de trabajo posible.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(V+E) disperso</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; O(V + E) con grafo moderado</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Grafo del programa (Desarrollo Web). V=9 materias, E=11 aristas. M&uacute;ltiples ramas.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+DFS recorre las dos ramas principales:
+
+Rama Frontend: Diseño UI/UX → HTML/CSS → Frontend(JS) → React
+Rama Backend:  Lógica → Backend(Node) → BD Relacionales → APIs
+Convergencia:  APIs → Cloud, React + APIs → Fullstack
+
+Resultado del ordenamiento topológico:
+  1. Diseño UI/UX
+  2. Introduccion a HTML/CSS
+  3. Logica de Programacion
+  4. Programacion Frontend (JS)
+  5. Frameworks Frontend (React)
+  6. Programacion Backend (Node)
+  7. Bases de Datos Relacionales
+  8. APIs y Microservicios
+  9. Cloud Computing y Despliegue / Desarrollo Fullstack
+
+Operaciones: V + E = 9 + 11 = 20</pre>
+                    <p style="color:#aaaaaa;">Cada materia se visita una vez (9) y cada prerrequisito se eval&uacute;a una vez (11). Total: 20 operaciones.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(V+E) moderado</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; O(V + E) con detecci&oacute;n de ciclo</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Grafo con dependencia circular. El DFS detecta un nodo con estado=1 (visitando) al que se intenta acceder nuevamente.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Grafo con ciclo: A → B → C → A  (dependencia circular)
+
+DFS desde A:
+  Visitar A → estado=1 (visitando)
+    Visitar B → estado=1
+      Visitar C → estado=1
+        Vecino de C es A → estado de A = 1 (VISITANDO)
+        ¡CICLO DETECTADO!
+
+Salida: "Error: Dependencia circular de materia: 'A'.
+         El plan de estudios no puede resolverse."
+
+El ciclo se detecta en O(V + E) sin recorrido adicional.</pre>
+                    <p style="color:#aaaaaa;">La detecci&oacute;n de ciclos no agrega complejidad adicional: el estado=1 (visitando) act&uacute;a como centinela dentro del DFS existente. Complejidad: <b>O(V + E)</b>.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(V+E) ciclo</span>
+                </div>
             </div>
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> El ordenamiento topol&oacute;gico con DFS mantiene O(V + E) en todos los escenarios. Su eficiencia lo hace ideal para resolver dependencias en compiladores, gestores de paquetes y planes de estudio.</p>
         </div>
 
         <div id="meta4.2" class="meta-section">
@@ -1165,15 +1433,95 @@ if __name__ == "__main__":
     print("-------------------------------------------------------------")</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">La inserci&oacute;n en un BST tiene complejidad <b>O(log n)</b> en un &aacute;rbol balanceado y <b>O(n)</b> en un &aacute;rbol degenerado (todas las inserciones hacia un solo lado). El recorrido Inorder siempre es <b>O(n)</b> porque visita todos los nodos.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; O(log n) por inserci&oacute;n</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Las citas se insertan en orden que produce un &aacute;rbol balanceado. Primera cita = 10:00 (ra&iacute;z central).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Insertar 10:00 (Carlos)    → Raíz
+Insertar 08:30 (Ana)       → izquierda de 10:00   (1 comparación)
+Insertar 14:00 (Sofia)     → derecha de 10:00     (1 comparación)
+Insertar 09:00 (Luis)      → derecha de 08:30     (2 comparaciones)
+Insertar 11:30 (Maria)     → izquierda de 14:00   (2 comparaciones)
+
+Árbol resultante (balanceado, altura=2):
+              10:00
+             /     \
+          08:30   14:00
+            \     /
+          09:00  11:30
+
+Agenda Inorder: 08:30 → 09:00 → 10:00 → 11:30 → 14:00
+Comparaciones por inserción: máximo 2 = log₂(5) ≈ 2.3</pre>
+                    <p style="color:#aaaaaa;">Con un &aacute;rbol balanceado, cada inserci&oacute;n requiere a lo mucho <b>log&sub2;(n)</b> comparaciones.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(log n)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; O(log n) por inserci&oacute;n + conflicto</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Inserciones del programa original incluyendo un conflicto de horario (10:00 duplicado).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Insertar 10:00 (Carlos)    → Raíz
+Insertar 08:30 (Ana)       → izquierda              (1 comp)
+Insertar 14:00 (Sofia)     → derecha                (1 comp)
+Insertar 09:00 (Luis)      → 10:00→08:30→derecha    (2 comp)
+Insertar 11:30 (Maria)     → 10:00→14:00→izquierda  (2 comp)
+Insertar 10:00 (Pedro)     → 10:00 == 10:00
+  ¡CONFLICTO! "Ya existe una cita a las 10:00 para Carlos Gomez"
+  Detección en O(1) al comparar con la raíz directamente.
+
+Agenda final (Inorder):
+| 08:30   | Ana Martinez   | Consulta general  |
+| 09:00   | Luis Hernandez | Ortodoncia        |
+| 10:00   | Carlos Gomez   | Revision dental   |
+| 11:30   | Maria Lopez    | Extraccion        |
+| 14:00   | Sofia Ruiz     | Limpieza dental   |</pre>
+                    <p style="color:#aaaaaa;">El conflicto se detecta al encontrar una hora duplicada durante la inserci&oacute;n, sin costo adicional.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(log n) + conflicto</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; O(n) por inserci&oacute;n (&aacute;rbol degenerado)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Las citas se insertan en orden cronol&oacute;gico ascendente, produciendo un &aacute;rbol degenerado (lista enlazada).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Insertar 08:00 → Raíz
+Insertar 09:00 → derecha de 08:00              (1 comp)
+Insertar 10:00 → derecha de 09:00              (2 comp)
+Insertar 11:00 → derecha de 10:00              (3 comp)
+Insertar 12:00 → derecha de 11:00              (4 comp)
+
+Árbol degenerado (altura=4, equivale a lista enlazada):
+08:00
+  \
+  09:00
+    \
+    10:00
+      \
+      11:00
+        \
+        12:00
+
+Comparaciones para insertar el 5º elemento: 4 = n-1 → O(n)
+Total comparaciones: 0+1+2+3+4 = 10 = n(n-1)/2 → O(n²) acumulado</pre>
+                    <p style="color:#aaaaaa;">El &aacute;rbol se degenera en una lista enlazada. Para evitarlo se usan &aacute;rboles autobalanceados como AVL o Rojo-Negro, que garantizan O(log n).</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(n) degenerado</span>
+                </div>
             </div>
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> El BST ofrece O(log n) promedio para inserci&oacute;n y b&uacute;squeda, pero puede degradarse a O(n) sin balanceo. El recorrido Inorder siempre produce la agenda ordenada cronol&oacute;gicamente en O(n).</p>
         </div>
 
         <div id="meta4.3" class="meta-section">
@@ -1488,15 +1836,87 @@ if __name__ == "__main__":
     run_tests()</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">El algoritmo de Huffman construye el &aacute;rbol en <b>O(k log k)</b> donde k = s&iacute;mbolos &uacute;nicos, y comprime/descomprime en <b>O(m)</b> donde m = tama&ntilde;o del archivo. La eficiencia de compresi&oacute;n depende de la entrop&iacute;a (distribuci&oacute;n de frecuencias) de los datos.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; Compresi&oacute;n m&aacute;xima (~75%)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Texto altamente redundante. Solo 4 s&iacute;mbolos con frecuencias muy desiguales (A=50000, B=25000, C=12500, D=12500).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Frecuencias: A=50000 (50%), B=25000 (25%), C=12500 (12.5%), D=12500 (12.5%)
+
+Construcción del árbol Huffman:
+  1. Fusionar C(12500) + D(12500) = CD(25000)
+  2. Fusionar B(25000) + CD(25000) = BCD(50000)
+  3. Fusionar A(50000) + BCD(50000) = Raíz(100000)
+
+Códigos generados:
+  A = 0        (1 bit)    ← símbolo más frecuente, código más corto
+  B = 10       (2 bits)
+  C = 110      (3 bits)
+  D = 111      (3 bits)
+
+Tamaño original:  100,000 bytes (800,000 bits)
+Tamaño comprimido: ~21,875 bytes (175,000 bits)
+Ahorro: 78.12%     Integridad SHA-256: PASS</pre>
+                    <p style="color:#aaaaaa;">Con alta redundancia, Huffman asigna c&oacute;digos de 1 bit al s&iacute;mbolo dominante, logrando compresi&oacute;n superior al 75%.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>Alta redundancia</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; Compresi&oacute;n moderada (~40%)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Texto literario (fragmento del Quijote repetido). Entrop&iacute;a media con ~60 caracteres &uacute;nicos.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Frecuencias (muestra): e=4250, a=3800, o=2900, s=2500, ' '=6000, ...
+
+Construcción del árbol: O(k log k) con k ≈ 60 símbolos
+Códigos generados (muestra):
+  ' ' = 00       (2 bits)   ← espacio es el más frecuente
+  'e' = 010      (3 bits)
+  'a' = 011      (3 bits)
+  'z' = 110110   (6 bits)   ← poco frecuente
+  'ñ' = 1101110  (7 bits)   ← muy poco frecuente
+
+Tamaño original:  ~40,000 bytes
+Tamaño comprimido: ~24,000 bytes
+Ahorro: ~40%       Integridad SHA-256: PASS</pre>
+                    <p style="color:#aaaaaa;">El texto natural tiene entrop&iacute;a media. Los caracteres frecuentes (espacio, vocales) obtienen c&oacute;digos cortos, pero la variedad de s&iacute;mbolos limita la compresi&oacute;n.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>Entrop&iacute;a media</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; Compresi&oacute;n nula o negativa</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Datos aleatorios (20 KB de bytes generados con os.urandom). Los 256 valores posibles tienen frecuencia casi uniforme.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Frecuencias: Cada byte (0-255) aparece ~78 veces (distribución uniforme)
+
+Construcción del árbol: O(256 × log 256) = O(256 × 8)
+Códigos generados: Todos de ~8 bits (igual que sin comprimir)
+  byte_0   = 00000000  (8 bits)
+  byte_1   = 00000001  (8 bits)
+  byte_255 = 11111111  (8 bits)
+
+Tamaño original:  20,000 bytes
+Tamaño comprimido: 20,000 + encabezado JSON ≈ 22,500 bytes
+Ahorro: -12.5% (¡NEGATIVO! El archivo crece por el encabezado)
+Integridad SHA-256: PASS (la descompresión restaura el original)</pre>
+                    <p style="color:#aaaaaa;">Con distribuci&oacute;n uniforme, Huffman no puede asignar c&oacute;digos m&aacute;s cortos que 8 bits. El encabezado JSON agrega overhead, resultando en un archivo <b>m&aacute;s grande</b> que el original.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>Alta entrop&iacute;a</span>
+                </div>
             </div>
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> Huffman es &oacute;ptimo para datos con alta redundancia (texto, logs). Para datos aleatorios o ya comprimidos, no ofrece beneficio. La complejidad del algoritmo completo es O(m + k log k) donde m=tama&ntilde;o del archivo y k=s&iacute;mbolos &uacute;nicos.</p>
         </div>
     </div>
 
@@ -1762,15 +2182,84 @@ if __name__ == "__main__":
     print("=" * 60)</pre>
             </div>
             
-            <div class="queque-placeholder">
-                <p>Mejor Caso: <span>QUEQUE</span></p>
+            <h4>Pruebas de Escritorio &mdash; An&aacute;lisis de Escenarios</h4>
+            <p style="color:#aaaaaa; margin-bottom:15px;">Las operaciones del Trie (inserci&oacute;n, b&uacute;squeda, eliminaci&oacute;n) tienen complejidad <b>O(L)</b> donde L = longitud de la palabra, independiente del n&uacute;mero total de palabras almacenadas. El autocompletado tiene complejidad <b>O(P + M log k)</b> donde P = longitud del prefijo, M = coincidencias en el sub&aacute;rbol, y k = l&iacute;mite de resultados.</p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Mejor Caso &mdash; O(L) inserci&oacute;n / O(P) autocompletado</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Inserci&oacute;n de palabra corta y b&uacute;squeda con prefijo que tiene pocas coincidencias.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Insertar "dato" (L=4):
+  Ra&iacute;z &rarr; 'd' (crear) &rarr; 'a' (crear) &rarr; 't' (crear) &rarr; 'o' (crear, marcar fin)
+  Operaciones: 4 (una por car&aacute;cter) &rarr; O(L) = O(4)
+
+Buscar "dato":
+  Ra&iacute;z &rarr; 'd' (existe) &rarr; 'a' (existe) &rarr; 't' (existe) &rarr; 'o' (is_end=True)
+  Resultado: (True, valor, frecuencia) &rarr; O(L) = O(4)
+
+Autocompletar "microdat" (P=8, pocas coincidencias):
+  Navegaci&oacute;n al prefijo: 8 pasos
+  DFS del sub&aacute;rbol: solo 10 palabras coinciden
+  Con limit=5 y Min-Heap: O(10 x log 5) = O(16)
+  Total: O(8 + 16) = O(24 operaciones)</pre>
+                    <p style="color:#aaaaaa;">Con palabras cortas y prefijos espec&iacute;ficos, el Trie responde en microsegundos.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(L)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Caso Promedio: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Caso Promedio &mdash; O(L) / O(P + M log k)</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Diccionario de 1,100 palabras. B&uacute;squeda del prefijo "transcomput" (resultados del benchmark).</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Diccionario: 1,100 palabras generadas combinatoriamente
+  10 prefijos x 10 ra&iacute;ces x 10 sufijos = 1,000 compuestas + 100 simples
+
+Autocompletar "transcomput" (P=11):
+  Navegaci&oacute;n al prefijo: 11 pasos por el camino t-r-a-n-s-c-o-m-p-u-t
+  DFS del sub&aacute;rbol: ~10 palabras coinciden
+  Min-Heap con limit=5: inserta y expulsa seg&uacute;n frecuencia
+
+  Tiempo (1,000 b&uacute;squedas):
+    Lista: 33.30 ms    (filtrado lineal de 1,100 strings)
+    Trie:   7.79 ms    (navegaci&oacute;n directa por prefijo)
+  Factor: Trie es 4.3x m&aacute;s r&aacute;pido</pre>
+                    <p style="color:#aaaaaa;">El Trie evita recorrer las 1,100 palabras: navega directamente al sub&aacute;rbol del prefijo.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(P + M log k)</span>
+                </div>
             </div>
-            <div class="queque-placeholder">
-                <p>Peor Caso: <span>QUEQUE</span></p>
+
+            <div class="scenario-row">
+                <div class="scenario-content">
+                    <p><b><u>Peor Caso &mdash; O(L) inserci&oacute;n / O(P + N) autocompletado</u></b></p>
+                    <p style="color:#aaaaaa;">Escenario: Prefijo muy corto que coincide con TODAS las palabras del diccionario.</p>
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+Autocompletar "" (prefijo vac&iacute;o, P=0):
+  Navegaci&oacute;n al prefijo: 0 pasos (empieza en la ra&iacute;z)
+  DFS del sub&aacute;rbol: recorre TODO el Trie (1,100 palabras, 3,655 nodos)
+  Min-Heap con limit=5: O(1,100 x log 5)
+
+  Operaciones: O(0 + 3,655) = O(N) donde N = total de nodos
+
+Uso de memoria (peor caso en Python):
+  Trie:  951,756 bytes (overhead de objetos Python)
+  Lista:  69,116 bytes (strings crudos contiguos)
+  
+  En Python, el overhead de objetos supera al ahorro de prefijos.
+  En C/C++, el Trie ahorra hasta 70% de memoria.</pre>
+                    <p style="color:#aaaaaa;">Con prefijos cortos o vac&iacute;os, el autocompletado degenera a un recorrido completo del &aacute;rbol.</p>
+                </div>
+                <div class="scenario-graph">
+                    <span><b><u>QUEQUE</u></b><br>Gr&aacute;fica Big O<br>O(N) todos los nodos</span>
+                </div>
             </div>
+
+            <p style="color:#aaaaaa; margin-top:15px;"><b>Conclusi&oacute;n:</b> El Trie es &oacute;ptimo para autocompletado con prefijos espec&iacute;ficos (O(P + M log k)), super&aacute;ndolo a la lista por un factor de 4.3x. Su fortaleza radica en la navegaci&oacute;n determinista por caracteres, independiente del tama&ntilde;o total del diccionario.</p>
         </div>
     </div>
 
