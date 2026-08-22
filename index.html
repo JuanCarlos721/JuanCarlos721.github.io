@@ -24,10 +24,23 @@
             color: #ffffff;
         }
         .header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #ffffff;
             padding-bottom: 20px;
             margin-bottom: 20px;
+        }
+        .header-text {
+            text-align: left;
+            flex: 1;
+        }
+        .header-logo {
+            margin-left: 20px;
+        }
+        .header-logo img {
+            max-width: 180px;
+            height: auto;
         }
         .header h1 {
             margin-bottom: 10px;
@@ -137,12 +150,12 @@
             padding: 15px;
         }
         .scenario-content {
-            flex: 3;
+            flex: 2;
             text-align: left;
         }
         .scenario-graph {
-            flex: 1;
-            min-width: 150px;
+            flex: 1.75;
+            min-width: 300px;
             border: 1px dashed #555555;
             display: flex;
             justify-content: center;
@@ -165,13 +178,17 @@
 <body>
 
 <div class="container">
-
     <div class="header">
-        <h1>Portafolio de Evidencias — Estructuras de Datos y Algoritmos</h1>
-        <p>Juan Carlos Perez Hernandez | Matrícula: 2200110</p>
-        <p>Universidad Autónoma de Baja California — FCITEC</p>
-        <p>Licenciatura en Desarrollo de Software</p>
-        <p>Docente: Abigail Moreno Cabrera</p>
+        <div class="header-text">
+            <h1>Portafolio de Evidencias - Estructuras de Datos y Algoritmos</h1>
+            <p>Juan Carlos Perez Hernandez | Matr&iacute;cula: 2200110</p>
+            <p>Universidad Aut&oacute;noma de Baja California - FCITEC</p>
+            <p>Licenciatura en Desarrollo de Software</p>
+            <p>Docente: Abigail Moreno Cabrera</p>
+        </div>
+        <div class="header-logo">
+            <img src="imagenes/FIRMA-UABC-FCITEC-COLOR-PARA-FONDO-DE-COLOR.png" alt="Logo UABC FCITEC">
+        </div>
     </div>
 
     <div class="nav">
