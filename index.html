@@ -152,6 +152,7 @@
         .scenario-content {
             flex: 2;
             text-align: left;
+            min-width: 0;
         }
         .scenario-graph {
             flex: 1.75;
@@ -364,7 +365,7 @@ int main(){
 
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones altas → [100, 95, 98, 92, 100]</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Calificacion de materia 1: 100
 Calificacion de materia 2: 95
 Calificacion de materia 3: 98
@@ -392,7 +393,7 @@ Estado: APROBADO
 
                 <p><b><u>Caso Promedio — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones mixtas → [70, 85, 55, 90, 60]</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Calificacion de materia 1: 70
 Calificacion de materia 2: 85
 Calificacion de materia 3: 55
@@ -420,7 +421,7 @@ Estado: APROBADO
 
                 <p><b><u>Peor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Entrada: Calificaciones reprobatorias → [30, 45, 20, 50, 35]</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Calificacion de materia 1: 30
 Calificacion de materia 2: 45
 Calificacion de materia 3: 20
@@ -548,7 +549,7 @@ while True:
 
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Solo operaciones de Pila (push y pop). No hay desplazamiento de elementos.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 ===== MENU =====
 Selecciona una opcion: 1
 Ingresa un dato para la pila: A
@@ -581,7 +582,7 @@ Dato eliminado: B       ← pop() del final, O(1)
 
                 <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Mezcla de operaciones de Pila y Cola. Algunas eliminaciones desplazan elementos.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 ===== MENU =====
 Selecciona una opcion: 3
 Ingresa un dato para la cola: X
@@ -614,7 +615,7 @@ Dato eliminado: Z       ← pop() del final, O(1)
 
                 <p><b><u>Peor Caso — O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: Solo operaciones de Cola con dequeue sucesivo. Cada eliminación desplaza n-1 elementos.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 ===== MENU =====
 (Se agregan 5 elementos: A, B, C, D, E)
                                     datos = ["A", "B", "C", "D", "E"]
@@ -718,7 +719,7 @@ print(busqueda_centinela(arreglo, 8)) # = 3</pre>
 
                 <p><b><u>Mejor Caso — O(1)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra en la primera posición (índice 0).</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 arreglo = [14, 23, 45, 8, 19]      objetivo = 14
 
 ── Búsqueda Secuencial ──
@@ -743,7 +744,7 @@ arreglo = [14, 23, 45, 8, 19]      objetivo = 14
 
                 <p><b><u>Caso Promedio — O(n/2) = O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado se encuentra aproximadamente a la mitad del arreglo.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 arreglo = [14, 23, 45, 8, 19]      objetivo = 45
 
 ── Búsqueda Secuencial ──
@@ -772,7 +773,7 @@ arreglo = [14, 23, 45, 8, 19]      objetivo = 45
 
                 <p><b><u>Peor Caso — O(n)</u></b></p>
                 <p style="color:#aaaaaa;">Escenario: El elemento buscado no existe en el arreglo. Se debe recorrer todo.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 arreglo = [14, 23, 45, 8, 19]      objetivo = 99
 
 ── Búsqueda Secuencial ──
@@ -915,7 +916,7 @@ print("Ordenado con Merge Sort:", sortedArr)</pre>
                 <div class="scenario-content">
                     <p><b><u>Mejor Caso &mdash; O(n) a O(n log n)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Arreglo ya ordenado [9, 10, 12, 18, 19, ... , 976, 981]. n=100.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Bubble Sort:     100 pasadas, 0 intercambios         → O(n²) [sin optimizar]
 Selection Sort:  100 pasadas, 100 extracciones          → O(n²) siempre
 Insertion Sort:  99 pasadas, 0 desplazamientos          → O(n) ← MEJOR
@@ -934,7 +935,7 @@ Resultado: [9, 10, 12, 18, 19, 23, 29, 34, ..., 968, 976, 981]
                 <div class="scenario-content">
                     <p><b><u>Caso Promedio &mdash; O(n&sup2;) a O(n log n)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Arreglo parcialmente desordenado (datos originales del programa). n=100.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Bubble Sort:     ~4,950 comparaciones, ~2,400 intercambios   → O(n²)
 Selection Sort:  ~4,950 comparaciones, 99 intercambios           → O(n²)
 Insertion Sort:  ~2,500 desplazamientos promedio                 → O(n²)
@@ -953,7 +954,7 @@ Resultado:        [9, 10, 12, 18, 19, 23, 29, 34, ..., 976, 981]</pre>
                 <div class="scenario-content">
                     <p><b><u>Peor Caso &mdash; O(n&sup2;)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Arreglo ordenado de forma inversa [981, 976, 968, ..., 12, 10, 9]. n=100.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Bubble Sort:     4,950 comparaciones, 4,950 intercambios     → O(n²) MÁXIMO
 Selection Sort:  4,950 comparaciones, 99 intercambios            → O(n²)
 Insertion Sort:  4,950 desplazamientos (cada elemento va al inicio) → O(n²) MÁXIMO
@@ -1122,7 +1123,7 @@ if __name__ == "__main__":
                 <div class="scenario-content">
                     <p><b><u>Mejor Caso &mdash; O(1)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: El elemento buscado coincide con la primera posici&oacute;n evaluada por cada algoritmo.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 datos_ordenados = [1, 2, 3, ..., 100000]     objetivo = 1 (secuencial) / 50000 (binaria)
 
 ── Búsqueda Secuencial (objetivo=1) ──
@@ -1146,7 +1147,7 @@ datos_ordenados = [1, 2, 3, ..., 100000]     objetivo = 1 (secuencial) / 50000 (
                 <div class="scenario-content">
                     <p><b><u>Caso Promedio &mdash; O(n) / O(log n) / O(log log n)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Objetivo aleatorio (ej: 73542) sobre 100,000 datos ordenados.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 ── Búsqueda Secuencial (objetivo=73542) ──
   Recorre i=0, 1, 2, ..., 73541
   arr[73541]=73542 == 73542 ✓
@@ -1174,7 +1175,7 @@ datos_ordenados = [1, 2, 3, ..., 100000]     objetivo = 1 (secuencial) / 50000 (
                 <div class="scenario-content">
                     <p><b><u>Peor Caso &mdash; O(n)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Elemento no encontrado (objetivo=0 no existe) o datos con distribuci&oacute;n no uniforme.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 ── Búsqueda Secuencial (objetivo=0) ──
   Recorre los 100,000 elementos completos
   No encontrado → retorna -1
@@ -1308,7 +1309,7 @@ if __name__ == "__main__":
                 <div class="scenario-content">
                     <p><b><u>Mejor Caso &mdash; O(V + E) con grafo disperso</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Grafo lineal simple (cadena). V=4 materias, E=3 aristas. M&iacute;nima cantidad de aristas.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Grafo: Lógica → HTML/CSS → Frontend(JS) → React
 
 DFS desde "Lógica de Programacion":
@@ -1334,7 +1335,7 @@ Operaciones: V + E = 4 + 3 = 7</pre>
                 <div class="scenario-content">
                     <p><b><u>Caso Promedio &mdash; O(V + E) con grafo moderado</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Grafo del programa (Desarrollo Web). V=9 materias, E=11 aristas. M&uacute;ltiples ramas.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 DFS recorre las dos ramas principales:
 
 Rama Frontend: Diseño UI/UX → HTML/CSS → Frontend(JS) → React
@@ -1364,7 +1365,7 @@ Operaciones: V + E = 9 + 11 = 20</pre>
                 <div class="scenario-content">
                     <p><b><u>Peor Caso &mdash; O(V + E) con detecci&oacute;n de ciclo</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Grafo con dependencia circular. El DFS detecta un nodo con estado=1 (visitando) al que se intenta acceder nuevamente.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Grafo con ciclo: A → B → C → A  (dependencia circular)
 
 DFS desde A:
@@ -1458,7 +1459,7 @@ if __name__ == "__main__":
                 <div class="scenario-content">
                     <p><b><u>Mejor Caso &mdash; O(log n) por inserci&oacute;n</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Las citas se insertan en orden que produce un &aacute;rbol balanceado. Primera cita = 10:00 (ra&iacute;z central).</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Insertar 10:00 (Carlos)    → Raíz
 Insertar 08:30 (Ana)       → izquierda de 10:00   (1 comparación)
 Insertar 14:00 (Sofia)     → derecha de 10:00     (1 comparación)
@@ -1485,7 +1486,7 @@ Comparaciones por inserción: máximo 2 = log₂(5) ≈ 2.3</pre>
                 <div class="scenario-content">
                     <p><b><u>Caso Promedio &mdash; O(log n) por inserci&oacute;n + conflicto</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Inserciones del programa original incluyendo un conflicto de horario (10:00 duplicado).</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Insertar 10:00 (Carlos)    → Raíz
 Insertar 08:30 (Ana)       → izquierda              (1 comp)
 Insertar 14:00 (Sofia)     → derecha                (1 comp)
@@ -1512,7 +1513,7 @@ Agenda final (Inorder):
                 <div class="scenario-content">
                     <p><b><u>Peor Caso &mdash; O(n) por inserci&oacute;n (&aacute;rbol degenerado)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Las citas se insertan en orden cronol&oacute;gico ascendente, produciendo un &aacute;rbol degenerado (lista enlazada).</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Insertar 08:00 → Raíz
 Insertar 09:00 → derecha de 08:00              (1 comp)
 Insertar 10:00 → derecha de 09:00              (2 comp)
@@ -1861,7 +1862,7 @@ if __name__ == "__main__":
                 <div class="scenario-content">
                     <p><b><u>Mejor Caso &mdash; Compresi&oacute;n m&aacute;xima (~75%)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Texto altamente redundante. Solo 4 s&iacute;mbolos con frecuencias muy desiguales (A=50000, B=25000, C=12500, D=12500).</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Frecuencias: A=50000 (50%), B=25000 (25%), C=12500 (12.5%), D=12500 (12.5%)
 
 Construcción del árbol Huffman:
@@ -1889,7 +1890,7 @@ Ahorro: 78.12%     Integridad SHA-256: PASS</pre>
                 <div class="scenario-content">
                     <p><b><u>Caso Promedio &mdash; Compresi&oacute;n moderada (~40%)</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Texto literario (fragmento del Quijote repetido). Entrop&iacute;a media con ~60 caracteres &uacute;nicos.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Frecuencias (muestra): e=4250, a=3800, o=2900, s=2500, ' '=6000, ...
 
 Construcción del árbol: O(k log k) con k ≈ 60 símbolos
@@ -1914,7 +1915,7 @@ Ahorro: ~40%       Integridad SHA-256: PASS</pre>
                 <div class="scenario-content">
                     <p><b><u>Peor Caso &mdash; Compresi&oacute;n nula o negativa</u></b></p>
                     <p style="color:#aaaaaa;">Escenario: Datos aleatorios (20 KB de bytes generados con os.urandom). Los 256 valores posibles tienen frecuencia casi uniforme.</p>
-<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0;">
+<pre style="background:#1a1a1a; color:#e0e0e0; padding:10px; font-family:'Courier New',monospace; font-size:13px; border:1px solid #333; margin:10px 0; overflow-x: auto;">
 Frecuencias: Cada byte (0-255) aparece ~78 veces (distribución uniforme)
 
 Construcción del árbol: O(256 × log 256) = O(256 × 8)
